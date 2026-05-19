@@ -23,7 +23,7 @@ text, tspan {white-space: pre;}
 <g id="left_panel">
   <rect x="18" y="36" width="356" height="478" rx="6" fill="none" class="leftBorder" stroke-width="1.5"/>
   <line x1="18" y1="64" x2="374" y2="64" class="leftBorder" stroke-width="1.5"/>
-  <text x="30" y="55" class="leftMuted" font-size="12">person.fetch</text>
+  <text x="30" y="55" class="leftMuted" font-size="12">workspace.panel</text>
 
   <rect x="38" y="86" width="316" height="260" rx="6" fill="none" class="leftBorder" stroke-width="1.5"/>
   <line x1="38" y1="114" x2="354" y2="114" class="leftBorder" stroke-width="1.5"/>
@@ -31,18 +31,18 @@ text, tspan {white-space: pre;}
   <circle cx="66" cy="100" r="3" class="leftMuted"/>
   <circle cx="79" cy="100" r="3" class="leftMuted"/>
 
-  <text x="50" y="138" class="leftMain" font-size="13">$ render --style neofetch</text>
-  <text x="50" y="160" class="leftMuted" font-size="12">theme      : minimal</text>
+  <text x="50" y="138" class="leftMain" font-size="13">Profile Snapshot</text>
+  <text x="50" y="160" class="leftMuted" font-size="12">style      : professional</text>
   <text x="50" y="180" class="leftMuted" font-size="12">layout     : balanced</text>
-  <text x="50" y="200" class="leftMuted" font-size="12">palette    : warm/cool</text>
-  <text x="50" y="220" class="leftMuted" font-size="12">panel      : terminal</text>
+  <text x="50" y="200" class="leftMuted" font-size="12">focus      : reliability</text>
+  <text x="50" y="220" class="leftMuted" font-size="12">format     : concise</text>
 
-  <text x="50" y="252" class="leftMain" font-size="12">[##########......] output</text>
-  <text x="50" y="272" class="leftMain" font-size="12">[########........] signal</text>
-  <text x="50" y="292" class="leftMain" font-size="12">[##########......] polish</text>
-  <text x="50" y="312" class="leftMain" font-size="12">[######..........] noise</text>
+  <text x="50" y="252" class="leftMain" font-size="12">[##########......] clarity</text>
+  <text x="50" y="272" class="leftMain" font-size="12">[########........] quality</text>
+  <text x="50" y="292" class="leftMain" font-size="12">[##########......] consistency</text>
+  <text x="50" y="312" class="leftMain" font-size="12">[######..........] delivery</text>
 
-  <text x="50" y="334" class="leftAccent" font-size="12">&gt;_ ready</text>
+  <text x="50" y="334" class="leftAccent" font-size="12">status: active</text>
 
   <text x="30" y="378" class="leftMuted" font-size="12">.----------------------------------------.</text>
   <text x="30" y="396" class="leftMuted" font-size="12">|   .-.      .-.      .-.      .-.      |</text>
