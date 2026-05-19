@@ -13,31 +13,44 @@ size-adjust: 109%;
 .addColor {fill: #3fb950;}
 .delColor {fill: #f85149;}
 .cc {fill: #616e7f;}
-.widgetBorder {stroke: #8b949e;}
-.widgetMain {fill: #f0f6fc;}
-.widgetMuted {fill: #8b949e;}
-.widgetAccent {fill: #ff9a00; stroke: #ff9a00;}
+.leftBorder {stroke: #8b949e;}
+.leftMain {fill: #f0f6fc;}
+.leftMuted {fill: #8b949e;}
+.leftAccent {fill: #ff9a00;}
 text, tspan {white-space: pre;}
 </style>
 <rect width="985px" height="530px" fill="#161b22" rx="15"/>
-<g id="left_widget">
-  <rect x="18" y="36" width="356" height="290" rx="6" fill="none" class="widgetBorder" stroke-width="1.5"/>
-  <line x1="136" y1="76" x2="136" y2="289" class="widgetBorder" stroke-width="1.5"/>
-  <line x1="264" y1="76" x2="264" y2="289" class="widgetBorder" stroke-width="1.5"/>
-  <circle cx="200" cy="140" r="60" fill="none" class="widgetAccent" stroke-width="7"/>
-  <path d="M200 65 C194 74, 194 81, 200 86 C206 81, 206 74, 200 65" fill="none" class="widgetAccent" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="left_panel">
+  <rect x="18" y="36" width="356" height="478" rx="6" fill="none" class="leftBorder" stroke-width="1.5"/>
+  <line x1="18" y1="64" x2="374" y2="64" class="leftBorder" stroke-width="1.5"/>
+  <text x="30" y="55" class="leftMuted" font-size="12">off@voidlabs:~</text>
 
-  <text x="77" y="154" text-anchor="middle" class="widgetMain" font-size="46" font-weight="700" id="widget_total_contrib">340</text>
-  <text x="77" y="208" text-anchor="middle" class="widgetMain" font-size="15">Total Contributions</text>
-  <text x="77" y="252" text-anchor="middle" class="widgetMuted" font-size="13" id="widget_total_range">Nov 24, 2022 - Present</text>
+  <circle cx="325" cy="92" r="18" fill="none" class="leftBorder" stroke-width="1.5"/>
+  <circle cx="334" cy="86" r="2" class="leftMuted"/>
+  <circle cx="78" cy="92" r="2" class="leftMuted"/>
+  <circle cx="108" cy="106" r="1.7" class="leftMuted"/>
+  <circle cx="292" cy="126" r="1.7" class="leftMuted"/>
 
-  <text x="200" y="154" text-anchor="middle" class="widgetMain" font-size="46" font-weight="700" id="widget_current_streak">0</text>
-  <text x="200" y="244" text-anchor="middle" class="widgetAccent" font-size="15" font-weight="700">Current Streak</text>
-  <text x="200" y="282" text-anchor="middle" class="widgetMuted" font-size="13" id="widget_current_date">May 19</text>
+  <text x="30" y="108" class="leftMain" font-size="14">$ whoami</text>
+  <text x="30" y="130" class="leftAccent" font-size="14">Off</text>
 
-  <text x="328" y="154" text-anchor="middle" class="widgetMain" font-size="46" font-weight="700" id="widget_longest_streak">14</text>
-  <text x="328" y="208" text-anchor="middle" class="widgetMain" font-size="15">Longest Streak</text>
-  <text x="328" y="252" text-anchor="middle" class="widgetMuted" font-size="13" id="widget_longest_range">Feb 23, 2023 - Mar 8, 2023</text>
+  <text x="30" y="172" class="leftMain" font-size="14">$ cat /etc/motto</text>
+  <text x="30" y="194" class="leftMuted" font-size="13">build useful things, ship cleanly</text>
+
+  <text x="30" y="236" class="leftMain" font-size="14">$ tree ~/lab -L 1</text>
+  <text x="30" y="258" class="leftMuted" font-size="13">./servers</text>
+  <text x="30" y="278" class="leftMuted" font-size="13">./mods</text>
+  <text x="30" y="298" class="leftMuted" font-size="13">./tools</text>
+
+  <text x="30" y="342" class="leftMain" font-size="14">$ focus --now</text>
+  <text x="30" y="364" class="leftMuted" font-size="13">- harden infra</text>
+  <text x="30" y="384" class="leftMuted" font-size="13">- improve plugin tooling</text>
+  <text x="30" y="404" class="leftMuted" font-size="13">- simplify deployment flow</text>
+
+  <text x="30" y="446" class="leftMain" font-size="14">$ status</text>
+  <text x="30" y="468" class="leftAccent" font-size="13">online</text>
+  <text x="92" y="468" class="leftMuted" font-size="13">| building</text>
+  <text x="188" y="468" class="leftMuted" font-size="13">| iterating</text>
 </g>
 <text x="390" y="30" fill="#c9d1d9">
 <tspan x="390" y="30">off@voidlabs</tspan> -------------------------------------------------------------------------
