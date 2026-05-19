@@ -13,47 +13,34 @@ size-adjust: 109%;
 .addColor {fill: #1a7f37;}
 .delColor {fill: #cf222e;}
 .cc {fill: #c2cfde;}
-.ascii {font-size: 13px;}
+.widgetBorder {stroke: #8c959f;}
+.widgetMain {fill: #24292f;}
+.widgetMuted {fill: #57606a;}
+.widgetAccent {fill: #9a6700; stroke: #9a6700;}
 text, tspan {white-space: pre;}
 </style>
 <rect width="985px" height="530px" fill="#f6f8fa" rx="15"/>
-<text x="15" y="30" fill="#24292f" class="ascii">
-<tspan x="15" y="30">            .        *           .           </tspan>
-<tspan x="15" y="45">   *                 .                +      </tspan>
-<tspan x="15" y="60">        .       o        .         *         </tspan>
-<tspan x="15" y="75"> .      _..._              .                 </tspan>
-<tspan x="15" y="90">      .:::::::.     *            .           </tspan>
-<tspan x="15" y="105">   *  :::::::::                .        *    </tspan>
-<tspan x="15" y="120">      `:::::::'    .      o                . </tspan>
-<tspan x="15" y="135">  .         *               .         +      </tspan>
-<tspan x="15" y="150">            .-====================-.         </tspan>
-<tspan x="15" y="165">       *    |  _______    ______  |     *   </tspan>
-<tspan x="15" y="180">   .        | /  ___  \  /  ___\ |          </tspan>
-<tspan x="15" y="195">        o   |/  / _ \  \/  / __/ |    .     </tspan>
-<tspan x="15" y="210">   *        |  / (_) \_  / /_/ / |          </tspan>
-<tspan x="15" y="225">      .     | /_/\___/ /_/\____/  |    *    </tspan>
-<tspan x="15" y="240">            |         Off          |         </tspan>
-<tspan x="15" y="255">        *   '-====================-'    .    </tspan>
-<tspan x="15" y="270">  .                 .          *              </tspan>
-<tspan x="15" y="285">      +        *         .          o         </tspan>
-<tspan x="15" y="300"> .            .--.                         .  </tspan>
-<tspan x="15" y="315">       *     (o  )      .     *             *</tspan>
-<tspan x="15" y="330">   .          '--'                        .   </tspan>
-<tspan x="15" y="345">          .         *      .      +          </tspan>
-<tspan x="15" y="360"> *              .         .             *     </tspan>
-<tspan x="15" y="375">      .     o        *           .            </tspan>
-<tspan x="15" y="390">   *         .                 .          o   </tspan>
-<tspan x="15" y="405"> .       +          *      .         *        </tspan>
-<tspan x="15" y="420">          .      .       o       .            </tspan>
-<tspan x="15" y="435">      *         .              +       *      </tspan>
-<tspan x="15" y="450">  .          *       .                .       </tspan>
-<tspan x="15" y="465">       o            *       .     *           </tspan>
-<tspan x="15" y="480"> .           +               .            *   </tspan>
-<tspan x="15" y="495">      *              .    o        .          </tspan>
-<tspan x="15" y="510">           .     *         .            +     </tspan>
-</text>
+<g id="left_widget">
+  <rect x="18" y="36" width="356" height="290" rx="6" fill="none" class="widgetBorder" stroke-width="1.5"/>
+  <line x1="136" y1="76" x2="136" y2="289" class="widgetBorder" stroke-width="1.5"/>
+  <line x1="264" y1="76" x2="264" y2="289" class="widgetBorder" stroke-width="1.5"/>
+  <circle cx="200" cy="140" r="60" fill="none" class="widgetAccent" stroke-width="7"/>
+  <path d="M200 65 C194 74, 194 81, 200 86 C206 81, 206 74, 200 65" fill="none" class="widgetAccent" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <text x="77" y="154" text-anchor="middle" class="widgetMain" font-size="46" font-weight="700" id="widget_total_contrib">340</text>
+  <text x="77" y="208" text-anchor="middle" class="widgetMain" font-size="15">Total Contributions</text>
+  <text x="77" y="252" text-anchor="middle" class="widgetMuted" font-size="13" id="widget_total_range">Nov 24, 2022 - Present</text>
+
+  <text x="200" y="154" text-anchor="middle" class="widgetMain" font-size="46" font-weight="700" id="widget_current_streak">0</text>
+  <text x="200" y="244" text-anchor="middle" class="widgetAccent" font-size="15" font-weight="700">Current Streak</text>
+  <text x="200" y="282" text-anchor="middle" class="widgetMuted" font-size="13" id="widget_current_date">May 19</text>
+
+  <text x="328" y="154" text-anchor="middle" class="widgetMain" font-size="46" font-weight="700" id="widget_longest_streak">14</text>
+  <text x="328" y="208" text-anchor="middle" class="widgetMain" font-size="15">Longest Streak</text>
+  <text x="328" y="252" text-anchor="middle" class="widgetMuted" font-size="13" id="widget_longest_range">Feb 23, 2023 - Mar 8, 2023</text>
+</g>
 <text x="390" y="30" fill="#24292f">
-<tspan x="390" y="30">off@voidlabs</tspan> -———————————————————————————————————————————-—-
+<tspan x="390" y="30">off@voidlabs</tspan> -------------------------------------------------------------------------
 <tspan x="390" y="50" class="cc">. </tspan><tspan class="key">OS</tspan>:<tspan class="cc" id="os_data_dots"> ................................... </tspan><tspan class="value" id="os_data">Arch Linux &amp; Windows 11</tspan>
 <tspan x="390" y="70" class="cc">. </tspan><tspan class="key">Uptime</tspan>:<tspan class="cc" id="age_data_dots"> ...................... </tspan><tspan class="value" id="age_data">22 years, 5 months, 29 days</tspan>
 <tspan x="390" y="90" class="cc">. </tspan><tspan class="key">Host</tspan>:<tspan class="cc" id="host_data_dots"> ................................... </tspan><tspan class="value" id="host_data">VoidLabs &amp; Sentry</tspan>
@@ -67,10 +54,10 @@ text, tspan {white-space: pre;}
 <tspan x="390" y="250" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Software</tspan>:<tspan class="cc" id="hobby_soft_data_dots"> .................... </tspan><tspan class="value" id="hobby_soft_data">Server Dev, Modding, Homelab</tspan>
 <tspan x="390" y="270" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Hardware</tspan>:<tspan class="cc" id="hobby_hard_data_dots"> ................. </tspan><tspan class="value" id="hobby_hard_data">Keyboard Builds, Soldering, PC Repair</tspan>
 <tspan x="390" y="290" class="cc">. </tspan>
-<tspan x="390" y="310">- Contact</tspan> -——————————————————————————————————————————————-—-
+<tspan x="390" y="310">- Contact</tspan> --------------------------------------------------------------------------
 <tspan x="390" y="330" class="cc">. </tspan><tspan class="key">Email</tspan>.<tspan class="key">Work</tspan>:<tspan class="cc" id="work_email_data_dots"> .................................................. </tspan><tspan class="value" id="work_email_data"></tspan>
 <tspan x="390" y="350" class="cc">. </tspan><tspan class="key">Discord</tspan>:<tspan class="cc" id="discord_data_dots"> ................................................ </tspan><tspan class="value" id="discord_data">scan.exe</tspan>
-<tspan x="390" y="450">- GitHub Stats</tspan> -—————————————————————————————————————————-—-
+<tspan x="390" y="450">- GitHub Stats</tspan> ----------------------------------------------------------------------
 <tspan x="390" y="470" class="cc">. </tspan><tspan class="key">Repos</tspan>:<tspan class="cc" id="repo_data_dots"> .... </tspan><tspan class="value" id="repo_data">95</tspan> {<tspan class="key">Contributed</tspan>:<tspan class="cc" id="contrib_data_dots"> .. </tspan><tspan class="value" id="contrib_data">133</tspan>} | <tspan class="key">Stars</tspan>:<tspan class="cc" id="star_data_dots"> ........... </tspan><tspan class="value" id="star_data">342</tspan>
 <tspan x="390" y="490" class="cc">. </tspan><tspan class="key">Commmits</tspan>:<tspan class="cc" id="commit_data_dots"> ................. </tspan><tspan class="value" id="commit_data">2,116</tspan> | <tspan class="key">Followers</tspan>:<tspan class="cc" id="follower_data_dots"> ....... </tspan><tspan class="value" id="follower_data">196</tspan>
 <tspan x="390" y="510" class="cc">. </tspan><tspan class="key">Lines of Code on GitHub</tspan>:<tspan class="cc" id="loc_data_dots">. </tspan><tspan class="value" id="loc_data">446,276</tspan> ( <tspan class="addColor" id="loc_add">523,178</tspan><tspan class="addColor">++</tspan>, <tspan id="loc_del_dots"> </tspan><tspan class="delColor" id="loc_del">76,902</tspan><tspan class="delColor">--</tspan> )
