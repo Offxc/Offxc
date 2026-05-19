@@ -27,7 +27,7 @@ text, tspan {white-space: pre;}
   <circle cx="200" cy="140" r="60" fill="none" class="widgetAccent" stroke-width="7"/>
   <path d="M200 65 C194 74, 194 81, 200 86 C206 81, 206 74, 200 65" fill="none" class="widgetAccent" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
 
-  <text x="77" y="154" text-anchor="middle" class="widgetMain" font-size="46" font-weight="700" id="widget_total_contrib">53</text>
+  <text x="77" y="154" text-anchor="middle" class="widgetMain" font-size="46" font-weight="700" id="widget_total_contrib">58</text>
   <text x="77" y="208" text-anchor="middle" class="widgetMain" font-size="15">Total Contributions</text>
   <text x="77" y="252" text-anchor="middle" class="widgetMuted" font-size="13" id="widget_total_range">Sep 25, 2025 - Present</text>
 
