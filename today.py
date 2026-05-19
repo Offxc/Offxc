@@ -10,24 +10,29 @@ import hashlib
 # Account permissions: read:Followers, read:Starring, read:Watching
 # Repository permissions: read:Commit statuses, read:Contents, read:Issues, read:Metadata, read:Pull Requests
 # Issues and pull requests permissions not needed at the moment, but may be used in the future
-ACCESS_TOKEN = os.environ.get('ACCESS_TOKEN') or os.environ.get('GITHUB_TOKEN')
-if not ACCESS_TOKEN:
-    raise EnvironmentError('Set ACCESS_TOKEN (preferred) or GITHUB_TOKEN before running today.py')
-HEADERS = {'authorization': 'token ' + ACCESS_TOKEN}
+TOKEN_CANDIDATES = []
+if os.environ.get('GITHUB_TOKEN'):
+    TOKEN_CANDIDATES.append(os.environ['GITHUB_TOKEN'])
+if os.environ.get('ACCESS_TOKEN') and os.environ['ACCESS_TOKEN'] not in TOKEN_CANDIDATES:
+    TOKEN_CANDIDATES.append(os.environ['ACCESS_TOKEN'])
+if not TOKEN_CANDIDATES:
+    raise EnvironmentError('Set ACCESS_TOKEN or GITHUB_TOKEN before running today.py')
+ACTIVE_TOKEN_INDEX = 0
+HEADERS = {'authorization': 'token ' + TOKEN_CANDIDATES[ACTIVE_TOKEN_INDEX]}
 USER_NAME = os.environ['USER_NAME'] # e.g. 'Offxc'
 QUERY_COUNT = {'user_getter': 0, 'follower_getter': 0, 'graph_repos_stars': 0, 'recursive_loc': 0, 'graph_commits': 0, 'loc_query': 0}
 STATIC_FIELD_WIDTHS = {
-    'os_data': 34,
-    'host_data': 34,
-    'kernel_data': 34,
-    'ide_data': 34,
-    'lang_prog_data': 37,
-    'lang_comp_data': 37,
-    'lang_real_data': 37,
-    'hobby_soft_data': 37,
-    'hobby_hard_data': 37,
-    'work_email_data': 30,
-    'discord_data': 30
+    'os_data': 46,
+    'host_data': 46,
+    'kernel_data': 46,
+    'ide_data': 46,
+    'lang_prog_data': 50,
+    'lang_comp_data': 50,
+    'lang_real_data': 50,
+    'hobby_soft_data': 50,
+    'hobby_hard_data': 50,
+    'work_email_data': 50,
+    'discord_data': 50
 }
 
 
@@ -60,10 +65,23 @@ def simple_request(func_name, query, variables):
     """
     Returns a request, or raises an Exception if the response does not succeed.
     """
-    request = requests.post('https://api.github.com/graphql', json={'query': query, 'variables':variables}, headers=HEADERS)
-    if request.status_code == 200:
-        return request
-    raise Exception(func_name, ' has failed with a', request.status_code, request.text, QUERY_COUNT)
+    global ACTIVE_TOKEN_INDEX, HEADERS
+    last_status = None
+    last_text = ''
+    for index in range(len(TOKEN_CANDIDATES)):
+        if index != ACTIVE_TOKEN_INDEX:
+            ACTIVE_TOKEN_INDEX = index
+            HEADERS = {'authorization': 'token ' + TOKEN_CANDIDATES[ACTIVE_TOKEN_INDEX]}
+        request = requests.post('https://api.github.com/graphql', json={'query': query, 'variables':variables}, headers=HEADERS)
+        last_status = request.status_code
+        last_text = request.text
+        if request.status_code == 200:
+            body = request.json()
+            if 'errors' in body and body['errors']:
+                # Try next token if available; otherwise raise with full GraphQL errors.
+                continue
+            return request
+    raise Exception(func_name, ' has failed with a', last_status, last_text, QUERY_COUNT)
 
 
 def graph_commits(start_date, end_date):
@@ -177,7 +195,9 @@ def loc_counter_one_repo(owner, repo_name, data, cache_comment, history, additio
     only adds the LOC value of commits authored by me
     """
     for node in history['edges']:
-        if node['node']['author']['user'] == OWNER_ID:
+        author = node['node'].get('author')
+        author_user = author.get('user') if isinstance(author, dict) else None
+        if author_user == OWNER_ID:
             my_commits += 1
             addition_total += node['node']['additions']
             deletion_total += node['node']['deletions']
