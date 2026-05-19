@@ -23,7 +23,9 @@ text, tspan {white-space: pre;}
 <g id="left_panel">
   <rect x="18" y="36" width="356" height="478" rx="6" fill="none" class="leftBorder" stroke-width="1.5"/>
   <line x1="18" y1="64" x2="374" y2="64" class="leftBorder" stroke-width="1.5"/>
-  <text x="30" y="55" class="leftMuted" font-size="12">workspace.panel</text>
+  <circle cx="33" cy="50" r="3" class="leftMuted"/>
+  <circle cx="46" cy="50" r="3" class="leftMuted"/>
+  <circle cx="59" cy="50" r="3" class="leftMuted"/>
 
   <rect x="38" y="86" width="316" height="260" rx="6" fill="none" class="leftBorder" stroke-width="1.5"/>
   <line x1="38" y1="114" x2="354" y2="114" class="leftBorder" stroke-width="1.5"/>
@@ -31,18 +33,18 @@ text, tspan {white-space: pre;}
   <circle cx="66" cy="100" r="3" class="leftMuted"/>
   <circle cx="79" cy="100" r="3" class="leftMuted"/>
 
-  <text x="50" y="138" class="leftMain" font-size="13">Profile Snapshot</text>
-  <text x="50" y="160" class="leftMuted" font-size="12">style      : professional</text>
-  <text x="50" y="180" class="leftMuted" font-size="12">layout     : balanced</text>
-  <text x="50" y="200" class="leftMuted" font-size="12">focus      : reliability</text>
-  <text x="50" y="220" class="leftMuted" font-size="12">format     : concise</text>
+  <text x="50" y="138" class="leftMain" font-size="12">+----------------------------+</text>
+  <text x="50" y="156" class="leftMuted" font-size="12">| ::::::::::::..::::::::::   |</text>
+  <text x="50" y="174" class="leftMuted" font-size="12">| ....::::....::::....::::   |</text>
+  <text x="50" y="192" class="leftMuted" font-size="12">| ::::::....::::::....::::   |</text>
+  <text x="50" y="210" class="leftMuted" font-size="12">+----------------------------+</text>
 
-  <text x="50" y="252" class="leftMain" font-size="12">[##########......] clarity</text>
-  <text x="50" y="272" class="leftMain" font-size="12">[########........] quality</text>
-  <text x="50" y="292" class="leftMain" font-size="12">[##########......] consistency</text>
-  <text x="50" y="312" class="leftMain" font-size="12">[######..........] delivery</text>
+  <text x="50" y="242" class="leftMain" font-size="12">[##########......]</text>
+  <text x="50" y="262" class="leftMain" font-size="12">[########........]</text>
+  <text x="50" y="282" class="leftMain" font-size="12">[##########......]</text>
+  <text x="50" y="302" class="leftMain" font-size="12">[######..........]</text>
 
-  <text x="50" y="334" class="leftAccent" font-size="12">status: active</text>
+  <text x="50" y="332" class="leftAccent" font-size="12">&gt;_  . . . . . . . . .</text>
 
   <text x="30" y="378" class="leftMuted" font-size="12">.----------------------------------------.</text>
   <text x="30" y="396" class="leftMuted" font-size="12">|   .-.      .-.      .-.      .-.      |</text>
@@ -52,24 +54,24 @@ text, tspan {white-space: pre;}
 </g>
 <text x="390" y="30" fill="#c9d1d9">
 <tspan x="390" y="30">off@voidlabs</tspan> -------------------------------------------------------------------------
-<tspan x="390" y="50" class="cc">. </tspan><tspan class="key">OS</tspan>:<tspan class="cc" id="os_data_dots"> .......................................... </tspan><tspan x="960" text-anchor="end" class="value" id="os_data">Arch Linux &amp; Windows 11</tspan>
-<tspan x="390" y="70" class="cc">. </tspan><tspan class="key">Uptime</tspan>:<tspan class="cc" id="age_data_dots"> .................................. </tspan><tspan x="960" text-anchor="end" class="value" id="age_data">22 years, 5 months, 29 days</tspan>
-<tspan x="390" y="90" class="cc">. </tspan><tspan class="key">Host</tspan>:<tspan class="cc" id="host_data_dots"> ............................................... </tspan><tspan x="960" text-anchor="end" class="value" id="host_data">VoidLabs &amp; Sentry</tspan>
-<tspan x="390" y="110" class="cc">. </tspan><tspan class="key">Kernel</tspan>:<tspan class="cc" id="kernel_data_dots"> ........................................... </tspan><tspan x="960" text-anchor="end" class="value" id="kernel_data">Software Developer</tspan>
-<tspan x="390" y="130" class="cc">. </tspan><tspan class="key">IDE</tspan>:<tspan class="cc" id="ide_data_dots"> .......................................................... </tspan><tspan x="960" text-anchor="end" class="value" id="ide_data">VSCode</tspan>
-<tspan x="390" y="150" class="cc">. </tspan>
-<tspan x="390" y="170" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Programming</tspan>:<tspan class="cc" id="lang_prog_data_dots"> ...................... </tspan><tspan x="960" text-anchor="end" class="value" id="lang_prog_data">Java, Python, TypeScript</tspan>
-<tspan x="390" y="190" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Computer</tspan>:<tspan class="cc" id="lang_comp_data_dots"> ............................. </tspan><tspan x="960" text-anchor="end" class="value" id="lang_comp_data">HTML, CSS, JSON, YAML</tspan>
-<tspan x="390" y="210" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Real</tspan>:<tspan class="cc" id="lang_real_data_dots"> .............................................. </tspan><tspan x="960" text-anchor="end" class="value" id="lang_real_data">English</tspan>
-<tspan x="390" y="230" class="cc">. </tspan>
-<tspan x="390" y="250" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Software</tspan>:<tspan class="cc" id="hobby_soft_data_dots"> ................... </tspan><tspan x="960" text-anchor="end" class="value" id="hobby_soft_data">MC Modding, Homelab, Development</tspan>
-<tspan x="390" y="270" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Hardware</tspan>:<tspan class="cc" id="hobby_hard_data_dots"> ..................... </tspan><tspan x="960" text-anchor="end" class="value" id="hobby_hard_data">Mechanical Keyboards, Soldering</tspan>
-<tspan x="390" y="290" class="cc">. </tspan>
-<tspan x="390" y="310">- Contact</tspan> --------------------------------------------------------------------------
-<tspan x="390" y="330" class="cc">. </tspan><tspan class="key">Signal</tspan>:<tspan class="cc" id="work_email_data_dots"> ....................................................... </tspan><tspan x="960" text-anchor="end" class="value" id="work_email_data">offx.44</tspan>
-<tspan x="390" y="350" class="cc">. </tspan><tspan class="key">Discord</tspan>:<tspan class="cc" id="discord_data_dots"> .................................................... </tspan><tspan x="960" text-anchor="end" class="value" id="discord_data">scan.exe</tspan>
-<tspan x="390" y="370" class="cc">. </tspan>
-<tspan x="390" y="390" class="cc">. </tspan>
+<tspan x="390" y="50" class="cc">. </tspan>
+<tspan x="390" y="70" class="cc">. </tspan><tspan class="key">OS</tspan>:<tspan class="cc" id="os_data_dots"> .......................................... </tspan>
+<tspan x="390" y="90" class="cc">. </tspan><tspan class="key">Uptime</tspan>:<tspan class="cc" id="age_data_dots"> .................................. </tspan>
+<tspan x="390" y="110" class="cc">. </tspan><tspan class="key">Host</tspan>:<tspan class="cc" id="host_data_dots"> ............................................... </tspan>
+<tspan x="390" y="130" class="cc">. </tspan><tspan class="key">Kernel</tspan>:<tspan class="cc" id="kernel_data_dots"> ........................................... </tspan>
+<tspan x="390" y="150" class="cc">. </tspan><tspan class="key">IDE</tspan>:<tspan class="cc" id="ide_data_dots"> .......................................................... </tspan>
+<tspan x="390" y="170" class="cc">. </tspan>
+<tspan x="390" y="190" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Programming</tspan>:<tspan class="cc" id="lang_prog_data_dots"> ...................... </tspan>
+<tspan x="390" y="210" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Computer</tspan>:<tspan class="cc" id="lang_comp_data_dots"> ............................. </tspan>
+<tspan x="390" y="230" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Real</tspan>:<tspan class="cc" id="lang_real_data_dots"> .............................................. </tspan>
+<tspan x="390" y="250" class="cc">. </tspan>
+<tspan x="390" y="270" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Software</tspan>:<tspan class="cc" id="hobby_soft_data_dots"> ................... </tspan>
+<tspan x="390" y="290" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Hardware</tspan>:<tspan class="cc" id="hobby_hard_data_dots"> ..................... </tspan>
+<tspan x="390" y="310" class="cc">. </tspan>
+<tspan x="390" y="330" class="cc">. </tspan>
+<tspan x="390" y="350">- Contact</tspan> --------------------------------------------------------------------------
+<tspan x="390" y="370" class="cc">. </tspan><tspan class="key">Signal</tspan>:<tspan class="cc" id="work_email_data_dots"> ....................................................... </tspan>
+<tspan x="390" y="390" class="cc">. </tspan><tspan class="key">Discord</tspan>:<tspan class="cc" id="discord_data_dots"> .................................................... </tspan>
 <tspan x="390" y="410" class="cc">. </tspan>
 <tspan x="390" y="430" class="cc">. </tspan>
 <tspan x="390" y="450">- GitHub Stats</tspan> ----------------------------------------------------------------------
@@ -77,4 +79,16 @@ text, tspan {white-space: pre;}
 <tspan x="390" y="490" class="cc">. </tspan><tspan class="key">Commmits</tspan>:<tspan class="cc" id="commit_data_dots"> ...................... </tspan><tspan class="value" id="commit_data">31</tspan> | <tspan class="key">Followers</tspan>:<tspan class="cc" id="follower_data_dots"> ......... </tspan><tspan class="value" id="follower_data">0</tspan>
 <tspan x="390" y="510" class="cc">. </tspan><tspan class="key">Lines of Code on GitHub</tspan>:<tspan class="cc" id="loc_data_dots"> .... </tspan><tspan class="value" id="loc_data">1,430</tspan> ( <tspan class="addColor" id="loc_add">2,599</tspan><tspan class="addColor">++</tspan>, <tspan id="loc_del_dots"> .. </tspan><tspan class="delColor" id="loc_del">1,169</tspan><tspan class="delColor">--</tspan> )
 </text>
+<text x="960" y="70" text-anchor="end" class="value" id="os_data">Arch Linux &amp; Windows 11</text>
+<text x="960" y="90" text-anchor="end" class="value" id="age_data">22 years, 5 months, 29 days</text>
+<text x="960" y="110" text-anchor="end" class="value" id="host_data">VoidLabs &amp; Sentry</text>
+<text x="960" y="130" text-anchor="end" class="value" id="kernel_data">Software Developer</text>
+<text x="960" y="150" text-anchor="end" class="value" id="ide_data">VSCode</text>
+<text x="960" y="190" text-anchor="end" class="value" id="lang_prog_data">Java, Python, TypeScript</text>
+<text x="960" y="210" text-anchor="end" class="value" id="lang_comp_data">HTML, CSS, JSON, YAML</text>
+<text x="960" y="230" text-anchor="end" class="value" id="lang_real_data">English</text>
+<text x="960" y="270" text-anchor="end" class="value" id="hobby_soft_data">MC Modding, Homelab, Development</text>
+<text x="960" y="290" text-anchor="end" class="value" id="hobby_hard_data">Mechanical Keyboards, Soldering</text>
+<text x="960" y="370" text-anchor="end" class="value" id="work_email_data">offx.44</text>
+<text x="960" y="390" text-anchor="end" class="value" id="discord_data">scan.exe</text>
 </svg>
