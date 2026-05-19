@@ -16,6 +16,19 @@ if not ACCESS_TOKEN:
 HEADERS = {'authorization': 'token ' + ACCESS_TOKEN}
 USER_NAME = os.environ['USER_NAME'] # e.g. 'Offxc'
 QUERY_COUNT = {'user_getter': 0, 'follower_getter': 0, 'graph_repos_stars': 0, 'recursive_loc': 0, 'graph_commits': 0, 'loc_query': 0}
+STATIC_FIELD_WIDTHS = {
+    'os_data': 34,
+    'host_data': 34,
+    'kernel_data': 34,
+    'ide_data': 34,
+    'lang_prog_data': 37,
+    'lang_comp_data': 37,
+    'lang_real_data': 37,
+    'hobby_soft_data': 37,
+    'hobby_hard_data': 37,
+    'work_email_data': 30,
+    'discord_data': 30
+}
 
 
 def daily_readme(birthday):
@@ -333,6 +346,7 @@ def svg_overwrite(filename, age_data, commit_data, star_data, repo_data, contrib
     justify_format(root, 'loc_data', loc_data[2], 9)
     justify_format(root, 'loc_add', loc_data[0])
     justify_format(root, 'loc_del', loc_data[1], 7)
+    align_static_fields(root)
     tree.write(filename, encoding='utf-8', xml_declaration=True)
 
 
@@ -351,6 +365,17 @@ def justify_format(root, element_id, new_text, length=0):
     else:
         dot_string = ' ' + ('.' * just_len) + ' '
     find_and_replace(root, f"{element_id}_dots", dot_string)
+
+
+def align_static_fields(root):
+    """
+    Auto-adjust dot spacing for static profile fields so values stay on-screen.
+    """
+    for element_id, length in STATIC_FIELD_WIDTHS.items():
+        element = root.find(f".//*[@id='{element_id}']")
+        if element is None:
+            continue
+        justify_format(root, element_id, element.text or '', length)
 
 
 def find_and_replace(root, element_id, new_text):
