@@ -55,23 +55,23 @@ text, tspan {white-space: pre;}
 <text x="390" y="30" fill="#c9d1d9">
 <tspan x="390" y="30">off@voidlabs</tspan> -------------------------------------------------------------------------
 <tspan x="390" y="50" class="cc">. </tspan>
-<tspan x="390" y="70" class="cc">. </tspan><tspan class="key">OS</tspan>:<tspan class="cc" id="os_data_dots"> .......................................... </tspan>
-<tspan x="390" y="90" class="cc">. </tspan><tspan class="key">Uptime</tspan>:<tspan class="cc" id="age_data_dots"> .................................. </tspan>
-<tspan x="390" y="110" class="cc">. </tspan><tspan class="key">Host</tspan>:<tspan class="cc" id="host_data_dots"> .............................................. </tspan>
-<tspan x="390" y="130" class="cc">. </tspan><tspan class="key">Kernel</tspan>:<tspan class="cc" id="kernel_data_dots"> ........................................... </tspan>
-<tspan x="390" y="150" class="cc">. </tspan><tspan class="key">IDE</tspan>:<tspan class="cc" id="ide_data_dots"> .......................................................... </tspan>
+<tspan x="390" y="70" class="cc">. </tspan><tspan class="key">OS</tspan>:<tspan class="cc" id="os_data_dots"> ...................................... </tspan>
+<tspan x="390" y="90" class="cc">. </tspan><tspan class="key">Uptime</tspan>:<tspan class="cc" id="age_data_dots"> .............................. </tspan>
+<tspan x="390" y="110" class="cc">. </tspan><tspan class="key">Host</tspan>:<tspan class="cc" id="host_data_dots"> .......................................... </tspan>
+<tspan x="390" y="130" class="cc">. </tspan><tspan class="key">Kernel</tspan>:<tspan class="cc" id="kernel_data_dots"> ....................................... </tspan>
+<tspan x="390" y="150" class="cc">. </tspan><tspan class="key">IDE</tspan>:<tspan class="cc" id="ide_data_dots"> ...................................................... </tspan>
 <tspan x="390" y="170" class="cc">. </tspan>
-<tspan x="390" y="190" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Programming</tspan>:<tspan class="cc" id="lang_prog_data_dots"> ...................... </tspan>
-<tspan x="390" y="210" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Computer</tspan>:<tspan class="cc" id="lang_comp_data_dots"> ............................ </tspan>
-<tspan x="390" y="230" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Real</tspan>:<tspan class="cc" id="lang_real_data_dots"> .............................................. </tspan>
+<tspan x="390" y="190" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Programming</tspan>:<tspan class="cc" id="lang_prog_data_dots"> .................. </tspan>
+<tspan x="390" y="210" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Computer</tspan>:<tspan class="cc" id="lang_comp_data_dots"> ........................ </tspan>
+<tspan x="390" y="230" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Real</tspan>:<tspan class="cc" id="lang_real_data_dots"> .......................................... </tspan>
 <tspan x="390" y="250" class="cc">. </tspan>
-<tspan x="390" y="270" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Software</tspan>:<tspan class="cc" id="hobby_soft_data_dots"> ................... </tspan>
-<tspan x="390" y="290" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Hardware</tspan>:<tspan class="cc" id="hobby_hard_data_dots"> .................... </tspan>
+<tspan x="390" y="270" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Software</tspan>:<tspan class="cc" id="hobby_soft_data_dots"> ............... </tspan>
+<tspan x="390" y="290" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Hardware</tspan>:<tspan class="cc" id="hobby_hard_data_dots"> ................ </tspan>
 <tspan x="390" y="310" class="cc">. </tspan>
 <tspan x="390" y="330" class="cc">. </tspan>
 <tspan x="390" y="350">- Contact</tspan> --------------------------------------------------------------------------
-<tspan x="390" y="370" class="cc">. </tspan><tspan class="key">Signal</tspan>:<tspan class="cc" id="work_email_data_dots"> ...................................................... </tspan>
-<tspan x="390" y="390" class="cc">. </tspan><tspan class="key">Discord</tspan>:<tspan class="cc" id="discord_data_dots"> .................................................... </tspan>
+<tspan x="390" y="370" class="cc">. </tspan><tspan class="key">Signal</tspan>:<tspan class="cc" id="work_email_data_dots"> .................................................. </tspan>
+<tspan x="390" y="390" class="cc">. </tspan><tspan class="key">Discord</tspan>:<tspan class="cc" id="discord_data_dots"> ................................................ </tspan>
 <tspan x="390" y="410" class="cc">. </tspan>
 <tspan x="390" y="430" class="cc">. </tspan>
 <tspan x="390" y="450">- GitHub Stats</tspan> ----------------------------------------------------------------------
