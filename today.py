@@ -21,6 +21,21 @@ ACTIVE_TOKEN_INDEX = 0
 HEADERS = {'authorization': 'token ' + TOKEN_CANDIDATES[ACTIVE_TOKEN_INDEX]}
 USER_NAME = os.environ['USER_NAME'] # e.g. 'Offxc'
 QUERY_COUNT = {'user_getter': 0, 'follower_getter': 0, 'graph_repos_stars': 0, 'recursive_loc': 0, 'graph_commits': 0, 'loc_query': 0}
+STATIC_ROW_TARGET_WIDTH = 65
+STATIC_FIELD_PREFIX_WIDTHS = {
+    'os_data': 5,          # ". OS:"
+    'age_data': 9,         # ". Uptime:"
+    'host_data': 7,        # ". Host:"
+    'kernel_data': 9,      # ". Kernel:"
+    'ide_data': 6,         # ". IDE:"
+    'lang_prog_data': 24,  # ". Languages.Programming:"
+    'lang_comp_data': 21,  # ". Languages.Computer:"
+    'lang_real_data': 17,  # ". Languages.Real:"
+    'hobby_soft_data': 19, # ". Hobbies.Software:"
+    'hobby_hard_data': 19, # ". Hobbies.Hardware:"
+    'work_email_data': 9,  # ". Signal:"
+    'discord_data': 10     # ". Discord:"
+}
 
 def daily_readme(birthday):
     """
@@ -372,10 +387,14 @@ def justify_format(root, element_id, new_text, length=0):
 
 def align_static_fields(root):
     """
-    Keep static profile value text as-is.
-    Dot leaders for static rows are hand-tuned in the SVG templates.
+    Auto-adjust dot leaders for static profile rows so dots stop at each value start.
     """
-    return
+    for element_id, prefix_width in STATIC_FIELD_PREFIX_WIDTHS.items():
+        element = root.find(f".//*[@id='{element_id}']")
+        if element is None:
+            continue
+        field_width = max(0, STATIC_ROW_TARGET_WIDTH - prefix_width - 2)
+        justify_format(root, element_id, element.text or '', field_width)
 
 
 def find_and_replace(root, element_id, new_text):
