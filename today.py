@@ -21,7 +21,7 @@ ACTIVE_TOKEN_INDEX = 0
 HEADERS = {'authorization': 'token ' + TOKEN_CANDIDATES[ACTIVE_TOKEN_INDEX]}
 USER_NAME = os.environ['USER_NAME'] # e.g. 'Offxc'
 QUERY_COUNT = {'user_getter': 0, 'follower_getter': 0, 'graph_repos_stars': 0, 'recursive_loc': 0, 'graph_commits': 0, 'loc_query': 0}
-STATIC_ROW_TARGET_WIDTH = 65
+STATIC_ROW_TARGET_WIDTH = 64
 STATIC_FIELD_PREFIX_WIDTHS = {
     'os_data': 5,          # ". OS:"
     'age_data': 9,         # ". Uptime:"
