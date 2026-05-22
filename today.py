@@ -106,6 +106,36 @@ def graph_commits(start_date, end_date):
     return int(request.json()['data']['user']['contributionsCollection']['totalCommitContributions'])
 
 
+def graph_commit_years():
+    """
+    Returns all contribution years available for the user.
+    """
+    query_count('graph_commits')
+    query = '''
+    query($login: String!) {
+        user(login: $login) {
+            contributionsCollection {
+                contributionYears
+            }
+        }
+    }'''
+    request = simple_request(graph_commit_years.__name__, query, {'login': USER_NAME})
+    return request.json()['data']['user']['contributionsCollection']['contributionYears']
+
+
+def graph_commits_lifetime():
+    """
+    Sums total commit contributions year-by-year to avoid range/window clipping.
+    """
+    total = 0
+    years = graph_commit_years()
+    for year in years:
+        start = f'{year}-01-01T00:00:00Z'
+        end = f'{year}-12-31T23:59:59Z'
+        total += graph_commits(start, end)
+    return total
+
+
 def graph_repos_stars(count_type, owner_affiliation, cursor=None, add_loc=0, del_loc=0):
     """
     Uses GitHub's GraphQL v4 API to return my total repository, star, or lines of code count.
@@ -509,8 +539,7 @@ if __name__ == '__main__':
     formatter('age calculation', age_time)
     total_loc, loc_time = perf_counter(loc_query, ['OWNER', 'COLLABORATOR', 'ORGANIZATION_MEMBER'], 7)
     formatter('LOC (cached)', loc_time) if total_loc[-1] else formatter('LOC (no cache)', loc_time)
-    end_date = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
-    commit_data, commit_time = perf_counter(graph_commits, acc_date, end_date)
+    commit_data, commit_time = perf_counter(graph_commits_lifetime)
     star_data, star_time = perf_counter(graph_repos_stars, 'stars', ['OWNER'])
     repo_data, repo_time = perf_counter(graph_repos_stars, 'repos', ['OWNER'])
     contrib_data, contrib_time = perf_counter(graph_repos_stars, 'repos', ['OWNER', 'COLLABORATOR', 'ORGANIZATION_MEMBER'])
