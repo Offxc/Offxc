@@ -31,7 +31,6 @@ jobs:
       - name: Update README file
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USER_NAME: ${{ github.repository_owner }}
           BIRTH_DATE: "1998-11-25"
         run: python today.py

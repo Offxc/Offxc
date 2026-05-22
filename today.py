@@ -11,12 +11,12 @@ import hashlib
 # Repository permissions: read:Commit statuses, read:Contents, read:Issues, read:Metadata, read:Pull Requests
 # Issues and pull requests permissions not needed at the moment, but may be used in the future
 TOKEN_CANDIDATES = []
-# Prefer ACCESS_TOKEN (PAT) first because it can include broader scopes/repo visibility
-# than the default GITHUB_TOKEN in GitHub Actions.
+# In CI we must prefer the user's ACCESS_TOKEN exclusively when present.
+# Falling back to GITHUB_TOKEN can silently undercount profile stats.
 if os.environ.get('ACCESS_TOKEN'):
-    TOKEN_CANDIDATES.append(os.environ['ACCESS_TOKEN'])
-if os.environ.get('GITHUB_TOKEN') and os.environ['GITHUB_TOKEN'] not in TOKEN_CANDIDATES:
-    TOKEN_CANDIDATES.append(os.environ['GITHUB_TOKEN'])
+    TOKEN_CANDIDATES = [os.environ['ACCESS_TOKEN']]
+elif os.environ.get('GITHUB_TOKEN'):
+    TOKEN_CANDIDATES = [os.environ['GITHUB_TOKEN']]
 if not TOKEN_CANDIDATES:
     raise EnvironmentError('Set ACCESS_TOKEN or GITHUB_TOKEN before running today.py')
 ACTIVE_TOKEN_INDEX = 0
@@ -117,6 +117,26 @@ def graph_commits_lifetime(start_year):
         end = f'{year}-12-31T23:59:59Z'
         total += graph_commits(start, end)
     return total
+
+
+def graph_total_contributions_last_year():
+    """
+    Returns total profile contributions in the last 1 year window
+    (commits + PRs + issues + reviews), matching the profile graph headline.
+    """
+    query_count('graph_commits')
+    query = '''
+    query($login: String!) {
+        user(login: $login) {
+            contributionsCollection {
+                contributionCalendar {
+                    totalContributions
+                }
+            }
+        }
+    }'''
+    request = simple_request(graph_total_contributions_last_year.__name__, query, {'login': USER_NAME})
+    return int(request.json()['data']['user']['contributionsCollection']['contributionCalendar']['totalContributions'])
 
 
 def graph_repos_stars(count_type, owner_affiliation, cursor=None, add_loc=0, del_loc=0):
@@ -522,8 +542,7 @@ if __name__ == '__main__':
     formatter('age calculation', age_time)
     total_loc, loc_time = perf_counter(loc_query, ['OWNER', 'COLLABORATOR', 'ORGANIZATION_MEMBER'], 7)
     formatter('LOC (cached)', loc_time) if total_loc[-1] else formatter('LOC (no cache)', loc_time)
-    account_start_year = int(acc_date[:4])
-    commit_data, commit_time = perf_counter(graph_commits_lifetime, account_start_year)
+    commit_data, commit_time = perf_counter(graph_total_contributions_last_year)
     star_data, star_time = perf_counter(graph_repos_stars, 'stars', ['OWNER'])
     repo_data, repo_time = perf_counter(graph_repos_stars, 'repos', ['OWNER'])
     contrib_data, contrib_time = perf_counter(graph_repos_stars, 'repos', ['OWNER', 'COLLABORATOR', 'ORGANIZATION_MEMBER'])
