@@ -11,10 +11,12 @@ import hashlib
 # Repository permissions: read:Commit statuses, read:Contents, read:Issues, read:Metadata, read:Pull Requests
 # Issues and pull requests permissions not needed at the moment, but may be used in the future
 TOKEN_CANDIDATES = []
-if os.environ.get('GITHUB_TOKEN'):
-    TOKEN_CANDIDATES.append(os.environ['GITHUB_TOKEN'])
-if os.environ.get('ACCESS_TOKEN') and os.environ['ACCESS_TOKEN'] not in TOKEN_CANDIDATES:
+# Prefer ACCESS_TOKEN (PAT) first because it can include broader scopes/repo visibility
+# than the default GITHUB_TOKEN in GitHub Actions.
+if os.environ.get('ACCESS_TOKEN'):
     TOKEN_CANDIDATES.append(os.environ['ACCESS_TOKEN'])
+if os.environ.get('GITHUB_TOKEN') and os.environ['GITHUB_TOKEN'] not in TOKEN_CANDIDATES:
+    TOKEN_CANDIDATES.append(os.environ['GITHUB_TOKEN'])
 if not TOKEN_CANDIDATES:
     raise EnvironmentError('Set ACCESS_TOKEN or GITHUB_TOKEN before running today.py')
 ACTIVE_TOKEN_INDEX = 0
@@ -87,22 +89,21 @@ def simple_request(func_name, query, variables):
 
 def graph_commits(start_date, end_date):
     """
-    Uses GitHub's GraphQL v4 API to return my total commit count
+    Uses GitHub's GraphQL v4 API to return total commit contributions
+    for the requested date range, aligned with GitHub profile contribution logic.
     """
     query_count('graph_commits')
     query = '''
     query($start_date: DateTime!, $end_date: DateTime!, $login: String!) {
         user(login: $login) {
             contributionsCollection(from: $start_date, to: $end_date) {
-                contributionCalendar {
-                    totalContributions
-                }
+                totalCommitContributions
             }
         }
     }'''
     variables = {'start_date': start_date,'end_date': end_date, 'login': USER_NAME}
     request = simple_request(graph_commits.__name__, query, variables)
-    return int(request.json()['data']['user']['contributionsCollection']['contributionCalendar']['totalContributions'])
+    return int(request.json()['data']['user']['contributionsCollection']['totalCommitContributions'])
 
 
 def graph_repos_stars(count_type, owner_affiliation, cursor=None, add_loc=0, del_loc=0):
@@ -508,7 +509,8 @@ if __name__ == '__main__':
     formatter('age calculation', age_time)
     total_loc, loc_time = perf_counter(loc_query, ['OWNER', 'COLLABORATOR', 'ORGANIZATION_MEMBER'], 7)
     formatter('LOC (cached)', loc_time) if total_loc[-1] else formatter('LOC (no cache)', loc_time)
-    commit_data, commit_time = perf_counter(commit_counter, 7)
+    end_date = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
+    commit_data, commit_time = perf_counter(graph_commits, acc_date, end_date)
     star_data, star_time = perf_counter(graph_repos_stars, 'stars', ['OWNER'])
     repo_data, repo_time = perf_counter(graph_repos_stars, 'repos', ['OWNER'])
     contrib_data, contrib_time = perf_counter(graph_repos_stars, 'repos', ['OWNER', 'COLLABORATOR', 'ORGANIZATION_MEMBER'])
