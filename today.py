@@ -106,30 +106,13 @@ def graph_commits(start_date, end_date):
     return int(request.json()['data']['user']['contributionsCollection']['totalCommitContributions'])
 
 
-def graph_commit_years():
+def graph_commits_lifetime(start_year):
     """
-    Returns all contribution years available for the user.
-    """
-    query_count('graph_commits')
-    query = '''
-    query($login: String!) {
-        user(login: $login) {
-            contributionsCollection {
-                contributionYears
-            }
-        }
-    }'''
-    request = simple_request(graph_commit_years.__name__, query, {'login': USER_NAME})
-    return request.json()['data']['user']['contributionsCollection']['contributionYears']
-
-
-def graph_commits_lifetime():
-    """
-    Sums total commit contributions year-by-year to avoid range/window clipping.
+    Sums commit contributions from account creation year through current year.
     """
     total = 0
-    years = graph_commit_years()
-    for year in years:
+    current_year = datetime.datetime.utcnow().year
+    for year in range(start_year, current_year + 1):
         start = f'{year}-01-01T00:00:00Z'
         end = f'{year}-12-31T23:59:59Z'
         total += graph_commits(start, end)
@@ -539,7 +522,8 @@ if __name__ == '__main__':
     formatter('age calculation', age_time)
     total_loc, loc_time = perf_counter(loc_query, ['OWNER', 'COLLABORATOR', 'ORGANIZATION_MEMBER'], 7)
     formatter('LOC (cached)', loc_time) if total_loc[-1] else formatter('LOC (no cache)', loc_time)
-    commit_data, commit_time = perf_counter(graph_commits_lifetime)
+    account_start_year = int(acc_date[:4])
+    commit_data, commit_time = perf_counter(graph_commits_lifetime, account_start_year)
     star_data, star_time = perf_counter(graph_repos_stars, 'stars', ['OWNER'])
     repo_data, repo_time = perf_counter(graph_repos_stars, 'repos', ['OWNER'])
     contrib_data, contrib_time = perf_counter(graph_repos_stars, 'repos', ['OWNER', 'COLLABORATOR', 'ORGANIZATION_MEMBER'])
