@@ -51,8 +51,6 @@ text, tspan {white-space: pre;}
   <text x="30" y="414" class="leftMuted" font-size="12">|  (   )    (   )    (   )    (   )     |</text>
   <text x="30" y="432" class="leftMuted" font-size="12">|   '-'      '-'      '-'      '-'      |</text>
   <text x="30" y="450" class="leftMuted" font-size="12">'----------------------------------------'</text>
-  <text x="196" y="486" text-anchor="middle" class="leftMuted" font-size="11">-- Views --</text>
-  <text x="196" y="508" text-anchor="middle" class="leftAccent" font-size="16" id="view_data">2</text>
 </g>
 <text x="390" y="30" fill="#c9d1d9">
 <tspan x="390" y="30">off@voidlabs</tspan> -------------------------------------------------------------------------
