@@ -44,8 +44,8 @@ text, tspan {white-space: pre;}
   <text x="30" y="311" font-size="12"><tspan class="leftAccent">current  </tspan><tspan class="leftMain">███░░░░░░░░░░░░░</tspan><tspan class="leftMuted">  5 days</tspan></text><text x="30" y="329" font-size="12"><tspan class="leftAccent">longest  </tspan><tspan class="leftMain">████████████████</tspan><tspan class="leftMuted">  27 days</tspan></text></g>
   <text x="30" y="347" class="leftMuted" font-size="12">────────────────────────────────────────────</text>
 
-  <text x="34" y="378" class="leftAccent" font-size="14">▁ ▃ ▅ ▇ █ █ ▇ ▅ ▃ ▁ ▂ ▄ ▆ █ █ ▆ ▄ ▂ ▁ ▃</text>
-  <text x="34" y="396" class="leftMuted" font-size="14">▁ ▁ ▂ ▃ ▄ ▄ ▃ ▂ ▁ ▁ ▁ ▂ ▃ ▄ ▄ ▃ ▂ ▁ ▁ ▁</text>
+  <text x="50" y="378" class="leftAccent" font-size="12">&#x2581; &#x2583; &#x2585; &#x2587; &#x2588; &#x2588; &#x2587; &#x2585; &#x2583; &#x2581; &#x2582; &#x2584; &#x2586; &#x2588; &#x2586; &#x2584;</text>
+  <text x="50" y="394" class="leftMuted" font-size="12">&#x2581; &#x2581; &#x2582; &#x2583; &#x2584; &#x2584; &#x2583; &#x2582; &#x2581; &#x2581; &#x2581; &#x2582; &#x2583; &#x2584; &#x2583; &#x2582;</text>
 
   <text x="196" y="418" text-anchor="middle" class="leftMuted" font-size="13">·      <tspan class="leftAccent">*</tspan>        ·          .        °</text>
   <text x="196" y="436" text-anchor="middle" class="leftMuted" font-size="13">   .        ·      +           <tspan class="leftAccent">*</tspan></text>
