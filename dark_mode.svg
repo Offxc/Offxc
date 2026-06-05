@@ -27,30 +27,40 @@ text, tspan {white-space: pre;}
   <circle cx="46" cy="50" r="3" class="leftMuted"/>
   <circle cx="59" cy="50" r="3" class="leftMuted"/>
 
-  <rect x="38" y="86" width="316" height="260" rx="6" fill="none" class="leftBorder" stroke-width="1.5"/>
+  <rect x="38" y="86" width="316" height="182" rx="6" fill="none" class="leftBorder" stroke-width="1.5"/>
   <line x1="38" y1="114" x2="354" y2="114" class="leftBorder" stroke-width="1.5"/>
   <circle cx="53" cy="100" r="3" class="leftMuted"/>
   <circle cx="66" cy="100" r="3" class="leftMuted"/>
   <circle cx="79" cy="100" r="3" class="leftMuted"/>
+  <text x="97" y="103" class="leftMuted" font-size="11">~/languages</text>
 
-  <text x="50" y="138" class="leftMain" font-size="12">+----------------------------+</text>
-  <text x="50" y="156" class="leftMuted" font-size="12">| ::::::::::::..::::::::::   |</text>
-  <text x="50" y="174" class="leftMuted" font-size="12">| ....::::....::::....::::   |</text>
-  <text x="50" y="192" class="leftMuted" font-size="12">| ::::::....::::::....::::   |</text>
-  <text x="50" y="210" class="leftMuted" font-size="12">+----------------------------+</text>
+  <text x="50" y="132" class="leftMuted" font-size="12">&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;</text>
+  <g id="lang_rows">
+  <text x="50" y="150" font-size="12"><tspan fill="#3178c6">&#x25A0; </tspan><tspan class="leftAccent">TypeScript  </tspan><tspan class="leftMain">[&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2591;&#x2591;&#x2591;&#x2591;]</tspan><tspan class="leftMuted">  48%</tspan></text>
+  <text x="50" y="168" font-size="12"><tspan fill="#3572a5">&#x25A0; </tspan><tspan class="leftAccent">Python      </tspan><tspan class="leftMain">[&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;]</tspan><tspan class="leftMuted">  36%</tspan></text>
+  <text x="50" y="186" font-size="12"><tspan fill="#b07219">&#x25A0; </tspan><tspan class="leftAccent">Java        </tspan><tspan class="leftMain">[&#x2588;&#x2588;&#x2588;&#x2588;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;]</tspan><tspan class="leftMuted">  26%</tspan></text>
+  <text x="50" y="204" font-size="12"><tspan fill="#89e051">&#x25A0; </tspan><tspan class="leftAccent">Shell       </tspan><tspan class="leftMain">[&#x2588;&#x2588;&#x2588;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;]</tspan><tspan class="leftMuted">  18%</tspan></text>
+  <text x="50" y="222" font-size="12"><tspan fill="#e34c26">&#x25A0; </tspan><tspan class="leftAccent">HTML/CSS    </tspan><tspan class="leftMain">[&#x2588;&#x2588;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;]</tspan><tspan class="leftMuted">  12%</tspan></text>
+  <text x="50" y="240" font-size="12"><tspan fill="#8b949e">&#x25A0; </tspan><tspan class="leftAccent">Other       </tspan><tspan class="leftMain">[&#x2588;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;]</tspan><tspan class="leftMuted">   6%</tspan></text>
+  </g>
+  <text x="50" y="258" class="leftMuted" font-size="12">&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;</text>
 
-  <text x="50" y="242" class="leftMain" font-size="12">[##########......]</text>
-  <text x="50" y="262" class="leftMain" font-size="12">[########........]</text>
-  <text x="50" y="282" class="leftMain" font-size="12">[##########......]</text>
-  <text x="50" y="302" class="leftMain" font-size="12">[######..........]</text>
+  <text x="30" y="292" class="leftMuted" font-size="11">&#x2500;&#x2500;&#x2500; streak &#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;</text>
+  <g id="streak_rows">
+  <text x="30" y="311" font-size="12"><tspan class="leftAccent">current  </tspan><tspan class="leftMain">&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;</tspan><tspan class="leftMuted">  42 days</tspan></text>
+  <text x="30" y="329" font-size="12"><tspan class="leftAccent">longest  </tspan><tspan class="leftMain">&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;</tspan><tspan class="leftMuted">  87 days</tspan></text>
+  </g>
+  <text x="30" y="347" class="leftMuted" font-size="12">&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;</text>
 
-  <text x="50" y="332" class="leftAccent" font-size="12">&gt;_  . . . . . . . . .</text>
+  <text x="34" y="378" class="leftAccent" font-size="14">&#x2581; &#x2583; &#x2585; &#x2587; &#x2588; &#x2588; &#x2587; &#x2585; &#x2583; &#x2581; &#x2582; &#x2584; &#x2586; &#x2588; &#x2588; &#x2586; &#x2584; &#x2582; &#x2581; &#x2583;</text>
+  <text x="34" y="396" class="leftMuted" font-size="14">&#x2581; &#x2581; &#x2582; &#x2583; &#x2584; &#x2584; &#x2583; &#x2582; &#x2581; &#x2581; &#x2581; &#x2582; &#x2583; &#x2584; &#x2584; &#x2583; &#x2582; &#x2581; &#x2581; &#x2581;</text>
 
-  <text x="30" y="378" class="leftMuted" font-size="12">.----------------------------------------.</text>
-  <text x="30" y="396" class="leftMuted" font-size="12">|   .-.      .-.      .-.      .-.      |</text>
-  <text x="30" y="414" class="leftMuted" font-size="12">|  (   )    (   )    (   )    (   )     |</text>
-  <text x="30" y="432" class="leftMuted" font-size="12">|   '-'      '-'      '-'      '-'      |</text>
-  <text x="30" y="450" class="leftMuted" font-size="12">'----------------------------------------'</text>
+  <text x="196" y="418" text-anchor="middle" class="leftMuted" font-size="13">&#xB7;      <tspan class="leftAccent">*</tspan>        &#xB7;          .        &#xB0;</text>
+  <text x="196" y="436" text-anchor="middle" class="leftMuted" font-size="13">   .        &#xB7;      +           <tspan class="leftAccent">*</tspan></text>
+  <text x="196" y="454" text-anchor="middle" class="leftMuted" font-size="13"><tspan class="leftAccent">*</tspan>         &#xB7;           .     +        &#xB7;</text>
+  <text x="196" y="472" text-anchor="middle" class="leftMuted" font-size="13">   +     &#xB7;    <tspan class="leftAccent">*</tspan>      &#xB7;     .    &#xB0;</text>
+
+  <text x="30" y="498" id="panel_updated" class="leftMuted" font-size="10">updated Jun 5 2026  &#xB7;  via GitHub API</text>
 </g>
 <text x="390" y="30" fill="#c9d1d9">
 <tspan x="390" y="30">off@voidlabs</tspan> -------------------------------------------------------------------------

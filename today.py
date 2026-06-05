@@ -22,7 +22,29 @@ if not TOKEN_CANDIDATES:
 ACTIVE_TOKEN_INDEX = 0
 HEADERS = {'authorization': 'token ' + TOKEN_CANDIDATES[ACTIVE_TOKEN_INDEX]}
 USER_NAME = os.environ['USER_NAME'] # e.g. 'Offxc'
-QUERY_COUNT = {'user_getter': 0, 'follower_getter': 0, 'graph_repos_stars': 0, 'recursive_loc': 0, 'graph_commits': 0, 'loc_query': 0}
+QUERY_COUNT = {'user_getter': 0, 'follower_getter': 0, 'graph_repos_stars': 0, 'recursive_loc': 0, 'graph_commits': 0, 'loc_query': 0, 'graph_languages': 0, 'graph_streak': 0}
+
+SVG_NS = 'http://www.w3.org/2000/svg'
+
+def svg_tag(tag):
+    """Return a namespaced SVG tag for lxml element creation."""
+    return f'{{{SVG_NS}}}{tag}'
+
+# Official GitHub/Linguist language colours (github.com/ozh/github-colors)
+LANGUAGE_COLORS = {
+    'TypeScript': '#3178c6', 'JavaScript': '#f1e05a', 'Python': '#3572a5',
+    'Java': '#b07219', 'Shell': '#89e051', 'HTML': '#e34c26', 'CSS': '#563d7c',
+    'C': '#555555', 'C++': '#f34b7d', 'C#': '#178600', 'Go': '#00add8',
+    'Rust': '#dea584', 'Ruby': '#701516', 'PHP': '#4f5d95', 'Kotlin': '#a97bff',
+    'Swift': '#f05138', 'Dart': '#00b4ab', 'Lua': '#000080', 'Vue': '#41b883',
+    'Dockerfile': '#384d54', 'Makefile': '#427819', 'PowerShell': '#012456',
+    'SCSS': '#c6538c', 'Svelte': '#ff3e00', 'Astro': '#ff5a03', 'Nix': '#7e7eff',
+    'Jupyter Notebook': '#da5b0b', 'TeX': '#3d6117', 'Haskell': '#5e5086',
+}
+DEFAULT_LANG_COLOR = '#8b949e'
+LANG_ROW_Y = [150, 168, 186, 204, 222, 240]
+STREAK_ROW_Y = {'current': 311, 'longest': 329}
+BAR_CELLS = 16
 STATIC_ROW_TARGET_WIDTH = 64
 STATIC_FIELD_PREFIX_WIDTHS = {
     'os_data': 5,          # ". OS:"
@@ -387,7 +409,186 @@ def stars_counter(data):
     return total_stars
 
 
-def svg_overwrite(filename, age_data, commit_data, star_data, repo_data, contrib_data, follower_data, loc_data):
+def graph_languages():
+    """
+    Uses GitHub's GraphQL v4 API to aggregate language byte counts across all
+    repositories I own, returning a {language_name: total_bytes} dict.
+    """
+    totals = {}
+    cursor = None
+    while True:
+        query_count('graph_languages')
+        query = '''
+        query ($login: String!, $cursor: String) {
+            user(login: $login) {
+                repositories(first: 100, after: $cursor, ownerAffiliations: [OWNER], isFork: false) {
+                    edges {
+                        node {
+                            ... on Repository {
+                                languages(first: 20, orderBy: {field: SIZE, direction: DESC}) {
+                                    edges { size node { name } }
+                                }
+                            }
+                        }
+                    }
+                    pageInfo { endCursor hasNextPage }
+                }
+            }
+        }'''
+        request = simple_request(graph_languages.__name__, query, {'login': USER_NAME, 'cursor': cursor})
+        repos = request.json()['data']['user']['repositories']
+        for edge in repos['edges']:
+            languages = edge['node'].get('languages')
+            if not languages:
+                continue
+            for lang_edge in languages['edges']:
+                name = lang_edge['node']['name']
+                totals[name] = totals.get(name, 0) + lang_edge['size']
+        if repos['pageInfo']['hasNextPage']:
+            cursor = repos['pageInfo']['endCursor']
+        else:
+            break
+    return totals
+
+
+def language_breakdown(top_n=6):
+    """
+    Returns a list of (name, percentage, colour) for the top languages,
+    collapsing the remainder into a single 'Other' row.
+    """
+    totals = graph_languages()
+    grand_total = sum(totals.values()) or 1
+    ordered = sorted(totals.items(), key=lambda kv: kv[1], reverse=True)
+    rows = []
+    for name, size in ordered[:top_n - 1]:
+        rows.append((name, size / grand_total * 100, LANGUAGE_COLORS.get(name, DEFAULT_LANG_COLOR)))
+    remainder = ordered[top_n - 1:]
+    if remainder:
+        other = sum(size for _, size in remainder)
+        rows.append(('Other', other / grand_total * 100, DEFAULT_LANG_COLOR))
+    return rows
+
+
+def make_bar(percentage, cells=BAR_CELLS):
+    """Build a bracketed block-character bar, e.g. [████████░░░░░░░░]."""
+    filled = max(0, min(cells, round(percentage / 100 * cells)))
+    return '[' + ('█' * filled) + ('░' * (cells - filled)) + ']'
+
+
+def make_streak_bar(value, denominator, cells=BAR_CELLS):
+    """Build an unbracketed block-character bar relative to a denominator."""
+    denominator = denominator or 1
+    filled = max(0, min(cells, round(value / denominator * cells)))
+    return ('█' * filled) + ('░' * (cells - filled))
+
+
+def get_streaks():
+    """
+    Walks the full contribution calendar (account creation year -> now) and
+    returns (current_streak, longest_streak) in days.
+    """
+    query_count('graph_streak')
+    years_query = '''
+    query ($login: String!) {
+        user(login: $login) { contributionsCollection { contributionYears } }
+    }'''
+    years_request = simple_request('get_streaks_years', years_query, {'login': USER_NAME})
+    years = years_request.json()['data']['user']['contributionsCollection']['contributionYears']
+
+    day_counts = {}
+    for year in years:
+        query_count('graph_streak')
+        cal_query = '''
+        query ($login: String!, $from: DateTime!, $to: DateTime!) {
+            user(login: $login) {
+                contributionsCollection(from: $from, to: $to) {
+                    contributionCalendar {
+                        weeks { contributionDays { date contributionCount } }
+                    }
+                }
+            }
+        }'''
+        variables = {'login': USER_NAME, 'from': f'{year}-01-01T00:00:00Z', 'to': f'{year}-12-31T23:59:59Z'}
+        cal_request = simple_request('get_streaks_calendar', cal_query, variables)
+        weeks = cal_request.json()['data']['user']['contributionsCollection']['contributionCalendar']['weeks']
+        for week in weeks:
+            for day in week['contributionDays']:
+                day_counts[day['date']] = day['contributionCount']
+
+    # Longest streak across all recorded days.
+    longest = current_run = 0
+    for date in sorted(day_counts):
+        if day_counts[date] > 0:
+            current_run += 1
+            longest = max(longest, current_run)
+        else:
+            current_run = 0
+
+    # Current streak walking backward from today (today counting 0 is allowed -
+    # the day may simply not have a commit yet).
+    current = 0
+    cursor = datetime.date.today()
+    if day_counts.get(cursor.isoformat(), 0) == 0:
+        cursor -= datetime.timedelta(days=1)
+    while day_counts.get(cursor.isoformat(), 0) > 0:
+        current += 1
+        cursor -= datetime.timedelta(days=1)
+    return current, longest
+
+
+def render_language_rows(root, rows):
+    """Rebuild the <g id='lang_rows'> group from live language data."""
+    group = root.find(f".//*[@id='lang_rows']")
+    if group is None:
+        return
+    for child in list(group):
+        group.remove(child)
+    for index, (name, percentage, colour) in enumerate(rows):
+        if index >= len(LANG_ROW_Y):
+            break
+        text = etree.SubElement(group, svg_tag('text'))
+        text.set('x', '50')
+        text.set('y', str(LANG_ROW_Y[index]))
+        text.set('font-size', '12')
+        square = etree.SubElement(text, svg_tag('tspan'))
+        square.set('fill', colour)
+        square.text = '■ '
+        label = etree.SubElement(text, svg_tag('tspan'))
+        label.set('class', 'leftAccent')
+        label.text = f'{name[:11]:<12}'
+        bar = etree.SubElement(text, svg_tag('tspan'))
+        bar.set('class', 'leftMain')
+        bar.text = make_bar(percentage)
+        pct = etree.SubElement(text, svg_tag('tspan'))
+        pct.set('class', 'leftMuted')
+        pct.text = f'  {round(percentage):>2}%'
+
+
+def render_streak_rows(root, current, longest):
+    """Rebuild the <g id='streak_rows'> group from live streak data."""
+    group = root.find(f".//*[@id='streak_rows']")
+    if group is None:
+        return
+    for child in list(group):
+        group.remove(child)
+    values = {'current': current, 'longest': longest}
+    for label in ('current', 'longest'):
+        text = etree.SubElement(group, svg_tag('text'))
+        text.set('x', '30')
+        text.set('y', str(STREAK_ROW_Y[label]))
+        text.set('font-size', '12')
+        name = etree.SubElement(text, svg_tag('tspan'))
+        name.set('class', 'leftAccent')
+        name.text = f'{label:<9}'
+        bar = etree.SubElement(text, svg_tag('tspan'))
+        bar.set('class', 'leftMain')
+        bar.text = make_streak_bar(values[label], longest)
+        days = etree.SubElement(text, svg_tag('tspan'))
+        days.set('class', 'leftMuted')
+        days.text = f'  {values[label]} days'
+
+
+def svg_overwrite(filename, age_data, commit_data, star_data, repo_data, contrib_data, follower_data, loc_data, lang_rows=None, streak=None):
     """
     Parse SVG files and update elements with my age, commits, stars, repositories, and lines written
     """
@@ -403,6 +604,11 @@ def svg_overwrite(filename, age_data, commit_data, star_data, repo_data, contrib
     justify_format(root, 'loc_add', loc_data[0])
     justify_format(root, 'loc_del', loc_data[1], 7)
     align_static_fields(root)
+    if lang_rows:
+        render_language_rows(root, lang_rows)
+    if streak is not None:
+        render_streak_rows(root, streak[0], streak[1])
+    find_and_replace(root, 'panel_updated', 'updated ' + datetime.date.today().strftime('%b %d %Y') + '  ·  via GitHub API')
     tree.write(filename, encoding='utf-8', xml_declaration=True)
 
 
@@ -558,8 +764,14 @@ if __name__ == '__main__':
 
     for index in range(len(total_loc)-1): total_loc[index] = '{:,}'.format(total_loc[index]) # format added, deleted, and total LOC
 
-    svg_overwrite('dark_mode.svg', age_data, commit_data, star_data, repo_data, contrib_data, follower_data, total_loc[:-1])
-    svg_overwrite('light_mode.svg', age_data, commit_data, star_data, repo_data, contrib_data, follower_data, total_loc[:-1])
+    # Left-panel modules: top-language breakdown and contribution streaks.
+    lang_rows, lang_time = perf_counter(language_breakdown, 6)
+    formatter('language breakdown', lang_time)
+    streak, streak_time = perf_counter(get_streaks)
+    formatter('streak calculation', streak_time)
+
+    svg_overwrite('dark_mode.svg', age_data, commit_data, star_data, repo_data, contrib_data, follower_data, total_loc[:-1], lang_rows, streak)
+    svg_overwrite('light_mode.svg', age_data, commit_data, star_data, repo_data, contrib_data, follower_data, total_loc[:-1], lang_rows, streak)
 
     # move cursor to override 'Calculation times:' with 'Total function time:' and the total function time, then move cursor back
     print('\033[F\033[F\033[F\033[F\033[F\033[F\033[F\033[F',
