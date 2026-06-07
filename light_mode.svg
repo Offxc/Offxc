@@ -60,10 +60,10 @@ text, tspan {white-space: pre;}
   <text x="50" y="385" class="leftMuted" font-size="12">──────────────────────────────────────────</text>
 
   <g clip-path="url(#activityBoxClip)">
-  <text x="50" y="406" class="leftAccent" font-size="12">▁ ▃ ▅ ▇ █ █ ▇ ▅ ▃ ▁ ▂ ▄ ▆ █ ▆ ▄</text>
-  <text x="50" y="422" class="leftMuted" font-size="12">▁ ▁ ▂ ▃ ▄ ▄ ▃ ▂ ▁ ▁ ▁ ▂ ▃ ▄ ▃ ▂</text>
+  <text x="196" y="406" text-anchor="middle" font-size="12"><tspan class="leftAccent">╭</tspan><tspan class="leftMuted">─────────────────────────────</tspan><tspan class="leftAccent">╮</tspan></text>
+  <text x="196" y="424" text-anchor="middle" font-size="12"><tspan class="leftAccent">│  </tspan><tspan class="leftMain" id="year_contrib_summary">2026 · 476 contributions</tspan><tspan class="leftAccent">  │</tspan></text>
+  <text x="196" y="442" text-anchor="middle" font-size="12"><tspan class="leftAccent">╰</tspan><tspan class="leftMuted">─────────────────────────────</tspan><tspan class="leftAccent">╯</tspan></text>
   </g>
-  <text x="196" y="442" text-anchor="middle" class="leftMuted" font-size="10" id="year_contrib_summary">2026 · 476 contributions</text>
 
   <text x="196" y="478" text-anchor="middle" font-size="12"><tspan class="leftAccent">♪  </tspan><tspan class="leftMain" id="now_playing_data">Nightcall — Kavinsky</tspan></text>
 
