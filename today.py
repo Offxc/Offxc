@@ -43,7 +43,7 @@ LANGUAGE_COLORS = {
 }
 DEFAULT_LANG_COLOR = '#8b949e'
 LANG_ROW_Y = [150, 168, 186, 204, 222, 240]
-STREAK_ROW_Y = {'current': 311, 'longest': 329}
+STREAK_ROW_Y = {'current': 349, 'longest': 367}
 BAR_CELLS = 16
 STATIC_ROW_TARGET_WIDTH = 64
 STATIC_FIELD_PREFIX_WIDTHS = {
@@ -52,11 +52,11 @@ STATIC_FIELD_PREFIX_WIDTHS = {
     'host_data': 7,        # ". Host:"
     'kernel_data': 9,      # ". Kernel:"
     'ide_data': 6,         # ". IDE:"
-    'lang_prog_data': 24,  # ". Languages.Programming:"
-    'lang_comp_data': 21,  # ". Languages.Computer:"
-    'lang_real_data': 17,  # ". Languages.Real:"
-    'hobby_soft_data': 19, # ". Hobbies.Software:"
-    'hobby_hard_data': 19, # ". Hobbies.Hardware:"
+    'lang_prog_data': 18,  # ".  ├─ Programming:"
+    'lang_comp_data': 15,  # ".  ├─ Computer:"
+    'lang_real_data': 11,  # ".  └─ Real:"
+    'hobby_soft_data': 15, # ".  ├─ Software:"
+    'hobby_hard_data': 15, # ".  └─ Hardware:"
     'work_email_data': 9,  # ". Signal:"
     'discord_data': 10     # ". Discord:"
 }
@@ -541,6 +541,7 @@ def render_language_rows(root, rows):
     group = root.find(f".//*[@id='lang_rows']")
     if group is None:
         return
+    group.set('clip-path', 'url(#langBoxClip)')
     for child in list(group):
         group.remove(child)
     for index, (name, percentage, colour) in enumerate(rows):
@@ -569,12 +570,13 @@ def render_streak_rows(root, current, longest):
     group = root.find(f".//*[@id='streak_rows']")
     if group is None:
         return
+    group.set('clip-path', 'url(#activityBoxClip)')
     for child in list(group):
         group.remove(child)
     values = {'current': current, 'longest': longest}
     for label in ('current', 'longest'):
         text = etree.SubElement(group, svg_tag('text'))
-        text.set('x', '30')
+        text.set('x', '50')
         text.set('y', str(STREAK_ROW_Y[label]))
         text.set('font-size', '12')
         name = etree.SubElement(text, svg_tag('tspan'))
