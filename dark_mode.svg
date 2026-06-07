@@ -63,9 +63,9 @@ text, tspan {white-space: pre;}
   <text x="50" y="406" class="leftAccent" font-size="12">▁ ▃ ▅ ▇ █ █ ▇ ▅ ▃ ▁ ▂ ▄ ▆ █ ▆ ▄</text>
   <text x="50" y="422" class="leftMuted" font-size="12">▁ ▁ ▂ ▃ ▄ ▄ ▃ ▂ ▁ ▁ ▁ ▂ ▃ ▄ ▃ ▂</text>
   </g>
-  <text x="196" y="442" text-anchor="middle" class="leftMuted" font-size="10">contributions · last 16 weeks</text>
+  <text x="196" y="442" text-anchor="middle" class="leftMuted" font-size="10" id="year_contrib_summary">2026 &#xb7; 247 contributions</text>
 
-  <text x="196" y="478" text-anchor="middle" class="leftMuted" font-size="13">·     <tspan class="leftAccent">*</tspan>       ·        +        .      <tspan class="leftAccent">*</tspan>       °</text>
+  <text x="196" y="478" text-anchor="middle" font-size="12"><tspan class="leftAccent">&#x266a;  </tspan><tspan class="leftMain" id="now_playing_data">Nightcall &#x2014; Kavinsky</tspan></text>
 
   <text x="50" y="504" id="panel_updated" class="leftMuted" font-size="10">updated Jun 07 2026  ·  via GitHub API</text>
 </g>

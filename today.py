@@ -533,7 +533,11 @@ def get_streaks():
     while day_counts.get(cursor.isoformat(), 0) > 0:
         current += 1
         cursor -= datetime.timedelta(days=1)
-    return current, longest
+
+    # Year-to-date total contributions for the activity-box footer.
+    this_year = str(datetime.date.today().year)
+    year_total = sum(count for date, count in day_counts.items() if date.startswith(this_year))
+    return current, longest, year_total
 
 
 def render_language_rows(root, rows):
@@ -610,6 +614,9 @@ def svg_overwrite(filename, age_data, commit_data, star_data, repo_data, contrib
         render_language_rows(root, lang_rows)
     if streak is not None:
         render_streak_rows(root, streak[0], streak[1])
+        if len(streak) > 2:
+            year = datetime.date.today().year
+            find_and_replace(root, 'year_contrib_summary', f'{year} · {streak[2]:,} contributions')
     find_and_replace(root, 'panel_updated', 'updated ' + datetime.date.today().strftime('%b %d %Y') + '  ·  via GitHub API')
     tree.write(filename, encoding='utf-8', xml_declaration=True)
 
