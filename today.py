@@ -5,6 +5,7 @@ import os
 from lxml import etree
 import time
 import hashlib
+import base64
 
 # Fine-grained personal access token with All Repositories access:
 # Account permissions: read:Followers, read:Starring, read:Watching
@@ -540,6 +541,80 @@ def get_streaks():
     return current, longest, year_total
 
 
+SPOTIFY_TOKEN_URL = 'https://accounts.spotify.com/api/token'
+SPOTIFY_NOW_PLAYING_URL = 'https://api.spotify.com/v1/me/player/currently-playing'
+SPOTIFY_RECENT_URL = 'https://api.spotify.com/v1/me/player/recently-played?limit=1'
+
+
+def _spotify_access_token():
+    """Exchange the long-lived refresh token for a short-lived access token.
+
+    Returns None if any of SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET,
+    SPOTIFY_REFRESH_TOKEN are missing, or if the refresh request fails.
+    """
+    client_id = os.environ.get('SPOTIFY_CLIENT_ID')
+    client_secret = os.environ.get('SPOTIFY_CLIENT_SECRET')
+    refresh_token = os.environ.get('SPOTIFY_REFRESH_TOKEN')
+    if not (client_id and client_secret and refresh_token):
+        return None
+    auth = base64.b64encode(f'{client_id}:{client_secret}'.encode()).decode()
+    try:
+        response = requests.post(
+            SPOTIFY_TOKEN_URL,
+            headers={'Authorization': f'Basic {auth}',
+                     'Content-Type': 'application/x-www-form-urlencoded'},
+            data={'grant_type': 'refresh_token', 'refresh_token': refresh_token},
+            timeout=10,
+        )
+    except requests.RequestException:
+        return None
+    if response.status_code != 200:
+        return None
+    return response.json().get('access_token')
+
+
+def _format_spotify_track(item):
+    """Render a Spotify track/episode payload as 'Name — Artist'."""
+    if not item:
+        return None
+    name = (item.get('name') or '').strip()
+    if not name:
+        return None
+    artists = item.get('artists') or []
+    artist_name = ', '.join(a.get('name', '').strip() for a in artists if a.get('name'))
+    if not artist_name:
+        # Podcasts use 'show.publisher' rather than 'artists'.
+        artist_name = ((item.get('show') or {}).get('publisher') or '').strip()
+    return f'{name} — {artist_name}' if artist_name else name
+
+
+def spotify_now_playing():
+    """Return 'Track — Artist' for the user's current or most-recent Spotify track.
+
+    Falls back to recently-played when nothing is currently playing. Returns
+    None when the API isn't configured or any request fails — callers should
+    leave the existing SVG value in place when this happens.
+    """
+    token = _spotify_access_token()
+    if not token:
+        return None
+    headers = {'Authorization': f'Bearer {token}'}
+    try:
+        response = requests.get(SPOTIFY_NOW_PLAYING_URL, headers=headers, timeout=10)
+        if response.status_code == 200 and response.text:
+            formatted = _format_spotify_track(response.json().get('item'))
+            if formatted:
+                return formatted
+        response = requests.get(SPOTIFY_RECENT_URL, headers=headers, timeout=10)
+        if response.status_code == 200:
+            items = response.json().get('items') or []
+            if items:
+                return _format_spotify_track(items[0].get('track'))
+    except requests.RequestException:
+        return None
+    return None
+
+
 def render_language_rows(root, rows):
     """Rebuild the <g id='lang_rows'> group from live language data."""
     group = root.find(f".//*[@id='lang_rows']")
@@ -594,7 +669,7 @@ def render_streak_rows(root, current, longest):
         days.text = f'  {values[label]} days'
 
 
-def svg_overwrite(filename, age_data, commit_data, star_data, repo_data, contrib_data, follower_data, loc_data, lang_rows=None, streak=None):
+def svg_overwrite(filename, age_data, commit_data, star_data, repo_data, contrib_data, follower_data, loc_data, lang_rows=None, streak=None, now_playing=None):
     """
     Parse SVG files and update elements with my age, commits, stars, repositories, and lines written
     """
@@ -617,6 +692,8 @@ def svg_overwrite(filename, age_data, commit_data, star_data, repo_data, contrib
         if len(streak) > 2:
             year = datetime.date.today().year
             find_and_replace(root, 'year_contrib_summary', f'{year} · {streak[2]:,} contributions')
+    if now_playing:
+        find_and_replace(root, 'now_playing_data', now_playing)
     find_and_replace(root, 'panel_updated', 'updated ' + datetime.date.today().strftime('%b %d %Y') + '  ·  via GitHub API')
     tree.write(filename, encoding='utf-8', xml_declaration=True)
 
@@ -778,14 +855,16 @@ if __name__ == '__main__':
     formatter('language breakdown', lang_time)
     streak, streak_time = perf_counter(get_streaks)
     formatter('streak calculation', streak_time)
+    now_playing, now_playing_time = perf_counter(spotify_now_playing)
+    formatter('spotify now playing', now_playing_time)
 
-    svg_overwrite('dark_mode.svg', age_data, commit_data, star_data, repo_data, contrib_data, follower_data, total_loc[:-1], lang_rows, streak)
-    svg_overwrite('light_mode.svg', age_data, commit_data, star_data, repo_data, contrib_data, follower_data, total_loc[:-1], lang_rows, streak)
+    svg_overwrite('dark_mode.svg', age_data, commit_data, star_data, repo_data, contrib_data, follower_data, total_loc[:-1], lang_rows, streak, now_playing)
+    svg_overwrite('light_mode.svg', age_data, commit_data, star_data, repo_data, contrib_data, follower_data, total_loc[:-1], lang_rows, streak, now_playing)
 
     # move cursor to override 'Calculation times:' with 'Total function time:' and the total function time, then move cursor back
-    print('\033[F\033[F\033[F\033[F\033[F\033[F\033[F\033[F',
+    print('\033[F\033[F\033[F\033[F\033[F\033[F\033[F\033[F\033[F',
         '{:<21}'.format('Total function time:'), '{:>11}'.format('%.4f' % (user_time + age_time + loc_time + commit_time + star_time + repo_time + contrib_time + follower_time)),
-        ' s \033[E\033[E\033[E\033[E\033[E\033[E\033[E\033[E', sep='')
+        ' s \033[E\033[E\033[E\033[E\033[E\033[E\033[E\033[E\033[E', sep='')
 
     print('Total GitHub GraphQL API calls:', '{:>3}'.format(sum(QUERY_COUNT.values())))
     for funct_name, count in QUERY_COUNT.items(): print('{:<28}'.format('   ' + funct_name + ':'), '{:>6}'.format(count))
