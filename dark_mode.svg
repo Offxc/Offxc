@@ -67,7 +67,7 @@ text, tspan {white-space: pre;}
 
   <text x="196" y="478" text-anchor="middle" font-size="12"><tspan class="leftMuted">╶───────  </tspan><tspan class="leftAccent">◆</tspan><tspan class="leftMuted">  ───────╴</tspan></text>
 
-  <text x="50" y="504" id="panel_updated" class="leftMuted" font-size="10">updated Jun 07 2026  ·  via GitHub API</text>
+  <text y="504" font-size="10" class="leftMuted"><tspan x="189" text-anchor="end">updated <tspan id="panel_updated_date">Jun 07 2026</tspan></tspan><tspan x="196" text-anchor="middle" class="leftAccent">·</tspan><tspan x="203" text-anchor="start">via GitHub API</tspan></text>
 </g>
 <text x="390" y="30" fill="#c9d1d9">
 <tspan x="390" y="30"><tspan class="leftAccent">❯ </tspan>off@voidlabs<tspan class="leftMuted"> ~</tspan></tspan> ─────────────────────────────────────────────────────────────────────

@@ -627,7 +627,7 @@ def svg_overwrite(filename, age_data, commit_data, star_data, repo_data, contrib
         if len(streak) > 2:
             year = datetime.date.today().year
             find_and_replace(root, 'year_contrib_summary', f'{year} · {streak[2]:,} contributions')
-    find_and_replace(root, 'panel_updated', 'updated ' + datetime.date.today().strftime('%b %d %Y') + '  ·  via GitHub API')
+    find_and_replace(root, 'panel_updated_date', datetime.date.today().strftime('%b %d %Y'))
     tree.write(filename, encoding='utf-8', xml_declaration=True)
 
 
