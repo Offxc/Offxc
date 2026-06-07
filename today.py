@@ -496,6 +496,8 @@ def get_streaks():
     years_request = simple_request('get_streaks_years', years_query, {'login': USER_NAME})
     years = years_request.json()['data']['user']['contributionsCollection']['contributionYears']
 
+    current_year = datetime.date.today().year
+    year_total = 0
     day_counts = {}
     for year in years:
         query_count('graph_streak')
@@ -504,14 +506,26 @@ def get_streaks():
             user(login: $login) {
                 contributionsCollection(from: $from, to: $to) {
                     contributionCalendar {
+                        totalContributions
                         weeks { contributionDays { date contributionCount } }
                     }
+                    restrictedContributionsCount
                 }
             }
         }'''
         variables = {'login': USER_NAME, 'from': f'{year}-01-01T00:00:00Z', 'to': f'{year}-12-31T23:59:59Z'}
         cal_request = simple_request('get_streaks_calendar', cal_query, variables)
-        weeks = cal_request.json()['data']['user']['contributionsCollection']['contributionCalendar']['weeks']
+        contributions_collection = cal_request.json()['data']['user']['contributionsCollection']
+        if year == current_year:
+            # Use GitHub's authoritative total (which respects the user's "Include
+            # private contributions on my profile" setting) plus the count of
+            # contributions the requesting token cannot see directly. Summing both
+            # yields the full count regardless of token scope or visibility flags.
+            year_total = (
+                contributions_collection['contributionCalendar']['totalContributions']
+                + contributions_collection.get('restrictedContributionsCount', 0)
+            )
+        weeks = contributions_collection['contributionCalendar']['weeks']
         for week in weeks:
             for day in week['contributionDays']:
                 day_counts[day['date']] = day['contributionCount']
@@ -534,10 +548,6 @@ def get_streaks():
     while day_counts.get(cursor.isoformat(), 0) > 0:
         current += 1
         cursor -= datetime.timedelta(days=1)
-
-    # Year-to-date total contributions for the activity-box footer.
-    this_year = str(datetime.date.today().year)
-    year_total = sum(count for date, count in day_counts.items() if date.startswith(this_year))
     return current, longest, year_total
 
 
