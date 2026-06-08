@@ -504,11 +504,14 @@ def get_streaks():
         query ($login: String!, $from: DateTime!, $to: DateTime!) {
             user(login: $login) {
                 contributionsCollection(from: $from, to: $to) {
+                    totalCommitContributions
+                    totalIssueContributions
+                    totalPullRequestContributions
+                    totalPullRequestReviewContributions
+                    restrictedContributionsCount
                     contributionCalendar {
-                        totalContributions
                         weeks { contributionDays { date contributionCount } }
                     }
-                    restrictedContributionsCount
                 }
             }
         }'''
@@ -516,12 +519,17 @@ def get_streaks():
         cal_request = simple_request('get_streaks_calendar', cal_query, variables)
         contributions_collection = cal_request.json()['data']['user']['contributionsCollection']
         if year == current_year:
-            # Use GitHub's authoritative total (which respects the user's "Include
-            # private contributions on my profile" setting) plus the count of
-            # contributions the requesting token cannot see directly. Summing both
-            # yields the full count regardless of token scope or visibility flags.
+            # Sum the four uncapped type-total fields plus restricted contributions.
+            # contributionCalendar.totalContributions is capped at 50/day, so heavy
+            # commit days (rebases, scripted runs, big squash-merges) make it
+            # under-report. The individual totalXxxContributions fields aren't
+            # capped, so summing them and adding restrictedContributionsCount gives
+            # the same number GitHub's profile graph header shows.
             year_total = (
-                contributions_collection['contributionCalendar']['totalContributions']
+                contributions_collection.get('totalCommitContributions', 0)
+                + contributions_collection.get('totalIssueContributions', 0)
+                + contributions_collection.get('totalPullRequestContributions', 0)
+                + contributions_collection.get('totalPullRequestReviewContributions', 0)
                 + contributions_collection.get('restrictedContributionsCount', 0)
             )
         weeks = contributions_collection['contributionCalendar']['weeks']
