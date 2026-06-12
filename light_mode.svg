@@ -44,7 +44,7 @@ text, tspan {white-space: pre;}
 
   <text x="50" y="132" class="leftMuted" font-size="12">──────────────────────────────────────────</text>
   <g id="lang_rows" clip-path="url(#langBoxClip)">
-  <text x="50" y="150" font-size="12"><tspan fill="#3178c6">■ </tspan><tspan class="leftAccent">TypeScript  </tspan><tspan class="leftMain">[███████░░░░░░░░░]</tspan><tspan class="leftMuted">  44%</tspan></text><text x="50" y="168" font-size="12"><tspan fill="#b07219">■ </tspan><tspan class="leftAccent">Java        </tspan><tspan class="leftMain">[████░░░░░░░░░░░░]</tspan><tspan class="leftMuted">  23%</tspan></text><text x="50" y="186" font-size="12"><tspan fill="#f1e05a">■ </tspan><tspan class="leftAccent">JavaScript  </tspan><tspan class="leftMain">[██░░░░░░░░░░░░░░]</tspan><tspan class="leftMuted">  12%</tspan></text><text x="50" y="204" font-size="12"><tspan fill="#563d7c">■ </tspan><tspan class="leftAccent">CSS         </tspan><tspan class="leftMain">[█░░░░░░░░░░░░░░░]</tspan><tspan class="leftMuted">   8%</tspan></text><text x="50" y="222" font-size="12"><tspan fill="#e34c26">■ </tspan><tspan class="leftAccent">HTML        </tspan><tspan class="leftMain">[█░░░░░░░░░░░░░░░]</tspan><tspan class="leftMuted">   7%</tspan></text><text x="50" y="240" font-size="12"><tspan fill="#8b949e">■ </tspan><tspan class="leftAccent">Other       </tspan><tspan class="leftMain">[█░░░░░░░░░░░░░░░]</tspan><tspan class="leftMuted">   6%</tspan></text></g>
+  <text x="50" y="150" font-size="12"><tspan fill="#3178c6">■ </tspan><tspan class="leftAccent">TypeScript  </tspan><tspan class="leftMain">[████████░░░░░░░░]</tspan><tspan class="leftMuted">  48%</tspan></text><text x="50" y="168" font-size="12"><tspan fill="#b07219">■ </tspan><tspan class="leftAccent">Java        </tspan><tspan class="leftMain">[███░░░░░░░░░░░░░]</tspan><tspan class="leftMuted">  21%</tspan></text><text x="50" y="186" font-size="12"><tspan fill="#f1e05a">■ </tspan><tspan class="leftAccent">JavaScript  </tspan><tspan class="leftMain">[██░░░░░░░░░░░░░░]</tspan><tspan class="leftMuted">  11%</tspan></text><text x="50" y="204" font-size="12"><tspan fill="#563d7c">■ </tspan><tspan class="leftAccent">CSS         </tspan><tspan class="leftMain">[█░░░░░░░░░░░░░░░]</tspan><tspan class="leftMuted">   8%</tspan></text><text x="50" y="222" font-size="12"><tspan fill="#e34c26">■ </tspan><tspan class="leftAccent">HTML        </tspan><tspan class="leftMain">[█░░░░░░░░░░░░░░░]</tspan><tspan class="leftMuted">   6%</tspan></text><text x="50" y="240" font-size="12"><tspan fill="#8b949e">■ </tspan><tspan class="leftAccent">Other       </tspan><tspan class="leftMain">[█░░░░░░░░░░░░░░░]</tspan><tspan class="leftMuted">   5%</tspan></text></g>
   <text x="50" y="258" class="leftMuted" font-size="12">──────────────────────────────────────────</text>
 
   <rect x="38" y="284" width="316" height="170" rx="6" fill="none" class="leftBorder" stroke-width="1.5"/>
@@ -61,13 +61,13 @@ text, tspan {white-space: pre;}
 
   <g clip-path="url(#activityBoxClip)">
   <text x="196" y="406" text-anchor="middle" font-size="12"><tspan class="leftAccent">╭</tspan><tspan class="leftMuted">─────────────────────────────</tspan><tspan class="leftAccent">╮</tspan></text>
-  <text x="196" y="424" text-anchor="middle" font-size="12"><tspan class="leftAccent">│  </tspan><tspan class="leftMain" id="year_contrib_summary">2026 · 478 contributions</tspan><tspan class="leftAccent">  │</tspan></text>
+  <text x="196" y="424" text-anchor="middle" font-size="12"><tspan class="leftAccent">│  </tspan><tspan class="leftMain" id="year_contrib_summary">2026 · 495 contributions</tspan><tspan class="leftAccent">  │</tspan></text>
   <text x="196" y="442" text-anchor="middle" font-size="12"><tspan class="leftAccent">╰</tspan><tspan class="leftMuted">─────────────────────────────</tspan><tspan class="leftAccent">╯</tspan></text>
   </g>
 
   <text x="196" y="478" text-anchor="middle" font-size="12"><tspan class="leftMuted">╶───────  </tspan><tspan class="leftAccent">◆</tspan><tspan class="leftMuted">  ───────╴</tspan></text>
 
-  <text y="504" font-size="10" class="leftMuted"><tspan x="189" text-anchor="end">updated <tspan id="panel_updated_date">Jun 11 2026</tspan></tspan><tspan x="196" text-anchor="middle" class="leftAccent">·</tspan><tspan x="203" text-anchor="start">via GitHub API</tspan></text>
+  <text y="504" font-size="10" class="leftMuted"><tspan x="189" text-anchor="end">updated <tspan id="panel_updated_date">Jun 12 2026</tspan></tspan><tspan x="196" text-anchor="middle" class="leftAccent">·</tspan><tspan x="203" text-anchor="start">via GitHub API</tspan></text>
 </g>
 <text x="390" y="30" fill="#24292f">
 <tspan x="390" y="30"><tspan class="leftAccent">❯ </tspan>off@voidlabs<tspan class="leftMuted"> ~</tspan></tspan> ─────────────────────────────────────────────────────────────────────
@@ -92,12 +92,12 @@ text, tspan {white-space: pre;}
 <tspan x="390" y="410" class="cc">. </tspan>
 <tspan x="390" y="430" class="cc">. </tspan>
 <tspan x="390" y="450"><tspan class="leftAccent">▸ </tspan>GitHub Stats</tspan> ────────────────────────────────────────────────────────────────────────
-<tspan x="390" y="470" class="cc">. </tspan><tspan class="key">Repos</tspan>:<tspan class="cc" id="repo_data_dots"> ..... </tspan><tspan class="value" id="repo_data">8</tspan> {<tspan class="key">Contributed</tspan>:<tspan class="cc" id="contrib_data_dots"> ... </tspan><tspan class="value" id="contrib_data">8</tspan>} | <tspan class="key">Stars</tspan>:<tspan class="cc" id="star_data_dots"> ............ </tspan><tspan class="value" id="star_data">22</tspan>
-<tspan x="390" y="490" class="cc">. </tspan><tspan class="key">Commits</tspan>:<tspan class="cc" id="commit_data_dots"> .................... </tspan><tspan class="value" id="commit_data">1,045</tspan> | <tspan class="key">Followers</tspan>:<tspan class="cc" id="follower_data_dots"> ......... </tspan><tspan class="value" id="follower_data">5</tspan>
-<tspan x="390" y="510" class="cc">. </tspan><tspan class="key">Lines of Code on GitHub</tspan>:<tspan class="cc" id="loc_data_dots"> .. </tspan><tspan class="value" id="loc_data">166,612</tspan> ( <tspan class="addColor" id="loc_add">247,808</tspan><tspan class="addColor">++</tspan>, <tspan id="loc_del_dots"> . </tspan><tspan class="delColor" id="loc_del">81,196</tspan><tspan class="delColor">--</tspan> )
+<tspan x="390" y="470" class="cc">. </tspan><tspan class="key">Repos</tspan>:<tspan class="cc" id="repo_data_dots"> ..... </tspan><tspan class="value" id="repo_data">9</tspan> {<tspan class="key">Contributed</tspan>:<tspan class="cc" id="contrib_data_dots"> ... </tspan><tspan class="value" id="contrib_data">9</tspan>} | <tspan class="key">Stars</tspan>:<tspan class="cc" id="star_data_dots"> ............ </tspan><tspan class="value" id="star_data">22</tspan>
+<tspan x="390" y="490" class="cc">. </tspan><tspan class="key">Commits</tspan>:<tspan class="cc" id="commit_data_dots"> .................... </tspan><tspan class="value" id="commit_data">1,061</tspan> | <tspan class="key">Followers</tspan>:<tspan class="cc" id="follower_data_dots"> ......... </tspan><tspan class="value" id="follower_data">5</tspan>
+<tspan x="390" y="510" class="cc">. </tspan><tspan class="key">Lines of Code on GitHub</tspan>:<tspan class="cc" id="loc_data_dots"> .. </tspan><tspan class="value" id="loc_data">177,983</tspan> ( <tspan class="addColor" id="loc_add">259,356</tspan><tspan class="addColor">++</tspan>, <tspan id="loc_del_dots"> . </tspan><tspan class="delColor" id="loc_del">81,373</tspan><tspan class="delColor">--</tspan> )
 </text>
 <text x="960" y="70" text-anchor="end" class="value" id="os_data">Arch Linux &amp; Windows 11</text>
-<text x="960" y="90" text-anchor="end" class="value" id="age_data">27 years, 6 months, 17 days</text>
+<text x="960" y="90" text-anchor="end" class="value" id="age_data">27 years, 6 months, 18 days</text>
 <text x="960" y="110" text-anchor="end" class="value" id="host_data">VoidLabs &amp; Sentry</text>
 <text x="960" y="130" text-anchor="end" class="value" id="kernel_data">Full-Stack &amp; Web Developer</text>
 <text x="960" y="150" text-anchor="end" class="value" id="ide_data">VSCode</text>
