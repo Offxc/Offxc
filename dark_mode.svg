@@ -67,7 +67,7 @@ text, tspan {white-space: pre;}
 
   <text x="196" y="478" text-anchor="middle" font-size="12"><tspan class="leftMuted">╶───────  </tspan><tspan class="leftAccent">◆</tspan><tspan class="leftMuted">  ───────╴</tspan></text>
 
-  <text y="504" font-size="10" class="leftMuted"><tspan x="189" text-anchor="end">updated <tspan id="panel_updated_date">Jul 15 2026</tspan></tspan><tspan x="196" text-anchor="middle" class="leftAccent">·</tspan><tspan x="203" text-anchor="start">via GitHub API</tspan></text>
+  <text y="504" font-size="10" class="leftMuted"><tspan x="189" text-anchor="end">updated <tspan id="panel_updated_date">Jul 16 2026</tspan></tspan><tspan x="196" text-anchor="middle" class="leftAccent">·</tspan><tspan x="203" text-anchor="start">via GitHub API</tspan></text>
 </g>
 <text x="390" y="30" fill="#c9d1d9">
 <tspan x="390" y="30"><tspan class="leftAccent">❯ </tspan>off@voidlabs<tspan class="leftMuted"> ~</tspan></tspan> ─────────────────────────────────────────────────────────────────────
@@ -97,7 +97,7 @@ text, tspan {white-space: pre;}
 <tspan x="390" y="510" class="cc">. </tspan><tspan class="key">Lines of Code on GitHub</tspan>:<tspan class="cc" id="loc_data_dots"> .. </tspan><tspan class="value" id="loc_data">180,082</tspan> ( <tspan class="addColor" id="loc_add">262,900</tspan><tspan class="addColor">++</tspan>, <tspan id="loc_del_dots"> . </tspan><tspan class="delColor" id="loc_del">82,818</tspan><tspan class="delColor">--</tspan> )
 </text>
 <text x="960" y="70" text-anchor="end" class="value" id="os_data">Arch Linux &amp; Windows 11</text>
-<text x="960" y="90" text-anchor="end" class="value" id="age_data">27 years, 7 months, 20 days</text>
+<text x="960" y="90" text-anchor="end" class="value" id="age_data">27 years, 7 months, 21 days</text>
 <text x="960" y="110" text-anchor="end" class="value" id="host_data">VoidLabs &amp; Sentry</text>
 <text x="960" y="130" text-anchor="end" class="value" id="kernel_data">Full-Stack &amp; Web Developer</text>
 <text x="960" y="150" text-anchor="end" class="value" id="ide_data">VSCode</text>
