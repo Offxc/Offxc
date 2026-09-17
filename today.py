@@ -45,6 +45,14 @@ DEFAULT_LANG_COLOR = '#8b949e'
 LANG_ROW_Y = [150, 168, 186, 204, 222, 240]
 STREAK_ROW_Y = {'current': 349, 'longest': 367}
 BAR_CELLS = 16
+# Left-panel column positions. Each column is its own <text> at a fixed x, so a
+# row can never push the column to its right out of line.
+LANG_LABEL_X = 50
+LANG_BAR_X = 150
+LANG_VALUE_X = 318
+STREAK_LABEL_X = 50
+STREAK_BAR_X = 115
+STREAK_VALUE_X = 318
 STATIC_ROW_TARGET_WIDTH = 64
 STATIC_FIELD_PREFIX_WIDTHS = {
     'os_data': 5,          # ". OS:"
@@ -57,6 +65,8 @@ STATIC_FIELD_PREFIX_WIDTHS = {
     'lang_real_data': 11,  # ".  └─ Real:"
     'hobby_soft_data': 15, # ".  ├─ Software:"
     'hobby_hard_data': 15, # ".  └─ Hardware:"
+    'focus_data': 8,       # ". Focus:"
+    'tools_data': 8,       # ". Tools:"
     'work_email_data': 9,  # ". Signal:"
     'discord_data': 10     # ". Discord:"
 }
@@ -467,17 +477,10 @@ def language_breakdown(top_n=6):
     return rows
 
 
-def make_bar(percentage, cells=BAR_CELLS):
-    """Build a bracketed block-character bar, e.g. [████████░░░░░░░░]."""
-    filled = max(0, min(cells, round(percentage / 100 * cells)))
-    return '[' + ('█' * filled) + ('░' * (cells - filled)) + ']'
-
-
-def make_streak_bar(value, denominator, cells=BAR_CELLS):
-    """Build an unbracketed block-character bar relative to a denominator."""
+def bar_cells(numerator, denominator, cells=BAR_CELLS):
+    """Return how many of the bar's cells are filled, clamped to the bar."""
     denominator = denominator or 1
-    filled = max(0, min(cells, round(value / denominator * cells)))
-    return ('█' * filled) + ('░' * (cells - filled))
+    return max(0, min(cells, round(numerator / denominator * cells)))
 
 
 def get_streaks():
@@ -556,6 +559,38 @@ def get_streaks():
     return current, longest, year_total
 
 
+def row_text(group, x, y, anchor=None, css_class=None):
+    """Append a left-panel <text> column at a fixed x."""
+    text = etree.SubElement(group, svg_tag('text'))
+    text.set('x', str(x))
+    text.set('y', str(y))
+    text.set('font-size', '12')
+    if anchor is not None:
+        text.set('text-anchor', anchor)
+    if css_class is not None:
+        text.set('class', css_class)
+    return text
+
+
+def row_bar(group, x, y, filled, cells=BAR_CELLS, brackets=True):
+    """
+    Draw a block bar as runs of one glyph, colouring the empty cells instead of
+    swapping in '░'. Block and shade glyphs are not guaranteed to share an
+    advance width once a viewer's font falls back, so a mixed-glyph bar changes
+    length with its own fill level and drags the column after it out of line.
+    """
+    text = row_text(group, x, y)
+    if brackets:
+        etree.SubElement(text, svg_tag('tspan'), {'class': 'leftMain'}).text = '['
+    if filled:
+        etree.SubElement(text, svg_tag('tspan'), {'class': 'leftMain'}).text = '█' * filled
+    if cells - filled:
+        etree.SubElement(text, svg_tag('tspan'), {'class': 'barTrack'}).text = '█' * (cells - filled)
+    if brackets:
+        etree.SubElement(text, svg_tag('tspan'), {'class': 'leftMain'}).text = ']'
+    return text
+
+
 def render_language_rows(root, rows):
     """Rebuild the <g id='lang_rows'> group from live language data."""
     group = root.find(f".//*[@id='lang_rows']")
@@ -567,22 +602,13 @@ def render_language_rows(root, rows):
     for index, (name, percentage, colour) in enumerate(rows):
         if index >= len(LANG_ROW_Y):
             break
-        text = etree.SubElement(group, svg_tag('text'))
-        text.set('x', '50')
-        text.set('y', str(LANG_ROW_Y[index]))
-        text.set('font-size', '12')
-        square = etree.SubElement(text, svg_tag('tspan'))
-        square.set('fill', colour)
-        square.text = '■ '
-        label = etree.SubElement(text, svg_tag('tspan'))
-        label.set('class', 'leftAccent')
-        label.text = f'{name[:11]:<12}'
-        bar = etree.SubElement(text, svg_tag('tspan'))
-        bar.set('class', 'leftMain')
-        bar.text = make_bar(percentage)
-        pct = etree.SubElement(text, svg_tag('tspan'))
-        pct.set('class', 'leftMuted')
-        pct.text = f'  {round(percentage):>2}%'
+        y = LANG_ROW_Y[index]
+        label = row_text(group, LANG_LABEL_X, y)
+        etree.SubElement(label, svg_tag('tspan'), {'fill': colour}).text = '■ '
+        etree.SubElement(label, svg_tag('tspan'), {'class': 'leftAccent'}).text = name[:11]
+        row_bar(group, LANG_BAR_X, y, bar_cells(percentage, 100))
+        pct = row_text(group, LANG_VALUE_X, y, anchor='end', css_class='leftMuted')
+        pct.text = f'{round(percentage)}%'
 
 
 def render_streak_rows(root, current, longest):
@@ -594,20 +620,12 @@ def render_streak_rows(root, current, longest):
     for child in list(group):
         group.remove(child)
     values = {'current': current, 'longest': longest}
-    for label in ('current', 'longest'):
-        text = etree.SubElement(group, svg_tag('text'))
-        text.set('x', '50')
-        text.set('y', str(STREAK_ROW_Y[label]))
-        text.set('font-size', '12')
-        name = etree.SubElement(text, svg_tag('tspan'))
-        name.set('class', 'leftAccent')
-        name.text = f'{label:<9}'
-        bar = etree.SubElement(text, svg_tag('tspan'))
-        bar.set('class', 'leftMain')
-        bar.text = make_streak_bar(values[label], longest)
-        days = etree.SubElement(text, svg_tag('tspan'))
-        days.set('class', 'leftMuted')
-        days.text = f'  {values[label]} days'
+    for label, y in STREAK_ROW_Y.items():
+        name = row_text(group, STREAK_LABEL_X, y, css_class='leftAccent')
+        name.text = label
+        row_bar(group, STREAK_BAR_X, y, bar_cells(values[label], longest), brackets=False)
+        days = row_text(group, STREAK_VALUE_X, y, anchor='end', css_class='leftMuted')
+        days.text = f'{values[label]} days'
 
 
 def svg_overwrite(filename, age_data, commit_data, star_data, repo_data, contrib_data, follower_data, loc_data, lang_rows=None, streak=None):

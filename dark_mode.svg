@@ -16,6 +16,7 @@ size-adjust: 109%;
 .leftBorder {stroke: #8b949e;}
 .leftMain {fill: #f0f6fc;}
 .leftMuted {fill: #8b949e;}
+.barTrack {fill: #363b42;}
 .leftAccent {fill: #ff9a00;}
 text, tspan {white-space: pre;}
 </style>
@@ -44,7 +45,7 @@ text, tspan {white-space: pre;}
 
   <text x="50" y="132" class="leftMuted" font-size="12">──────────────────────────────────────────</text>
   <g id="lang_rows" clip-path="url(#langBoxClip)">
-  <text x="50" y="150" font-size="12"><tspan fill="#3178c6">■ </tspan><tspan class="leftAccent">TypeScript  </tspan><tspan class="leftMain">[███████████░░░░░]</tspan><tspan class="leftMuted">  68%</tspan></text><text x="50" y="168" font-size="12"><tspan fill="#b07219">■ </tspan><tspan class="leftAccent">Java        </tspan><tspan class="leftMain">[██░░░░░░░░░░░░░░]</tspan><tspan class="leftMuted">  12%</tspan></text><text x="50" y="186" font-size="12"><tspan fill="#f1e05a">■ </tspan><tspan class="leftAccent">JavaScript  </tspan><tspan class="leftMain">[█░░░░░░░░░░░░░░░]</tspan><tspan class="leftMuted">   7%</tspan></text><text x="50" y="204" font-size="12"><tspan fill="#563d7c">■ </tspan><tspan class="leftAccent">CSS         </tspan><tspan class="leftMain">[█░░░░░░░░░░░░░░░]</tspan><tspan class="leftMuted">   5%</tspan></text><text x="50" y="222" font-size="12"><tspan fill="#e34c26">■ </tspan><tspan class="leftAccent">HTML        </tspan><tspan class="leftMain">[█░░░░░░░░░░░░░░░]</tspan><tspan class="leftMuted">   4%</tspan></text><text x="50" y="240" font-size="12"><tspan fill="#8b949e">■ </tspan><tspan class="leftAccent">Other       </tspan><tspan class="leftMain">[█░░░░░░░░░░░░░░░]</tspan><tspan class="leftMuted">   3%</tspan></text></g>
+  <text x="50" y="150" font-size="12"><tspan fill="#3178c6">■ </tspan><tspan class="leftAccent">TypeScript</tspan></text><text x="150" y="150" font-size="12"><tspan class="leftMain">[</tspan><tspan class="leftMain">███████████</tspan><tspan class="barTrack">█████</tspan><tspan class="leftMain">]</tspan></text><text x="318" y="150" font-size="12" text-anchor="end" class="leftMuted">68%</text><text x="50" y="168" font-size="12"><tspan fill="#b07219">■ </tspan><tspan class="leftAccent">Java</tspan></text><text x="150" y="168" font-size="12"><tspan class="leftMain">[</tspan><tspan class="leftMain">██</tspan><tspan class="barTrack">██████████████</tspan><tspan class="leftMain">]</tspan></text><text x="318" y="168" font-size="12" text-anchor="end" class="leftMuted">12%</text><text x="50" y="186" font-size="12"><tspan fill="#f1e05a">■ </tspan><tspan class="leftAccent">JavaScript</tspan></text><text x="150" y="186" font-size="12"><tspan class="leftMain">[</tspan><tspan class="leftMain">█</tspan><tspan class="barTrack">███████████████</tspan><tspan class="leftMain">]</tspan></text><text x="318" y="186" font-size="12" text-anchor="end" class="leftMuted">7%</text><text x="50" y="204" font-size="12"><tspan fill="#563d7c">■ </tspan><tspan class="leftAccent">CSS</tspan></text><text x="150" y="204" font-size="12"><tspan class="leftMain">[</tspan><tspan class="leftMain">█</tspan><tspan class="barTrack">███████████████</tspan><tspan class="leftMain">]</tspan></text><text x="318" y="204" font-size="12" text-anchor="end" class="leftMuted">5%</text><text x="50" y="222" font-size="12"><tspan fill="#e34c26">■ </tspan><tspan class="leftAccent">HTML</tspan></text><text x="150" y="222" font-size="12"><tspan class="leftMain">[</tspan><tspan class="leftMain">█</tspan><tspan class="barTrack">███████████████</tspan><tspan class="leftMain">]</tspan></text><text x="318" y="222" font-size="12" text-anchor="end" class="leftMuted">4%</text><text x="50" y="240" font-size="12"><tspan fill="#8b949e">■ </tspan><tspan class="leftAccent">Other</tspan></text><text x="150" y="240" font-size="12"><tspan class="leftMain">[</tspan><tspan class="leftMain">█</tspan><tspan class="barTrack">███████████████</tspan><tspan class="leftMain">]</tspan></text><text x="318" y="240" font-size="12" text-anchor="end" class="leftMuted">3%</text></g>
   <text x="50" y="258" class="leftMuted" font-size="12">──────────────────────────────────────────</text>
 
   <rect x="38" y="284" width="316" height="170" rx="6" fill="none" class="leftBorder" stroke-width="1.5"/>
@@ -56,7 +57,7 @@ text, tspan {white-space: pre;}
 
   <text x="50" y="330" class="leftMuted" font-size="12">──────────────────────────────────────────</text>
   <g id="streak_rows" clip-path="url(#activityBoxClip)">
-  <text x="50" y="349" font-size="12"><tspan class="leftAccent">current  </tspan><tspan class="leftMain">░░░░░░░░░░░░░░░░</tspan><tspan class="leftMuted">  0 days</tspan></text><text x="50" y="367" font-size="12"><tspan class="leftAccent">longest  </tspan><tspan class="leftMain">████████████████</tspan><tspan class="leftMuted">  216 days</tspan></text></g>
+  <text x="50" y="349" font-size="12" class="leftAccent">current</text><text x="115" y="349" font-size="12"><tspan class="barTrack">████████████████</tspan></text><text x="318" y="349" font-size="12" text-anchor="end" class="leftMuted">0 days</text><text x="50" y="367" font-size="12" class="leftAccent">longest</text><text x="115" y="367" font-size="12"><tspan class="leftMain">████████████████</tspan></text><text x="318" y="367" font-size="12" text-anchor="end" class="leftMuted">216 days</text></g>
   <text x="50" y="385" class="leftMuted" font-size="12">──────────────────────────────────────────</text>
 
   <g clip-path="url(#activityBoxClip)">
@@ -75,21 +76,21 @@ text, tspan {white-space: pre;}
 <tspan x="390" y="70" class="cc">. </tspan><tspan class="key">OS</tspan>:<tspan class="cc" id="os_data_dots"> .................................. </tspan>
 <tspan x="390" y="90" class="cc">. </tspan><tspan class="key">Uptime</tspan>:<tspan class="cc" id="age_data_dots"> .......................... </tspan>
 <tspan x="390" y="110" class="cc">. </tspan><tspan class="key">Host</tspan>:<tspan class="cc" id="host_data_dots"> ...................................... </tspan>
-<tspan x="390" y="130" class="cc">. </tspan><tspan class="key">Kernel</tspan>:<tspan class="cc" id="kernel_data_dots"> ........................... </tspan>
-<tspan x="390" y="150" class="cc">. </tspan><tspan class="key">IDE</tspan>:<tspan class="cc" id="ide_data_dots"> .................................................. </tspan>
-<tspan x="390" y="170" class="cc">. </tspan><tspan class="key">Languages</tspan>:
-<tspan x="390" y="190" class="cc">.  ├─ </tspan><tspan class="key">Programming</tspan>:<tspan class="cc" id="lang_prog_data_dots"> .................... </tspan>
-<tspan x="390" y="210" class="cc">.  ├─ </tspan><tspan class="key">Computer</tspan>:<tspan class="cc" id="lang_comp_data_dots"> .......................... </tspan>
-<tspan x="390" y="230" class="cc">.  └─ </tspan><tspan class="key">Real</tspan>:<tspan class="cc" id="lang_real_data_dots"> ............................................ </tspan>
-<tspan x="390" y="250" class="cc">. </tspan><tspan class="key">Hobbies</tspan>:
-<tspan x="390" y="270" class="cc">.  ├─ </tspan><tspan class="key">Software</tspan>:<tspan class="cc" id="hobby_soft_data_dots"> .............. </tspan>
-<tspan x="390" y="290" class="cc">.  └─ </tspan><tspan class="key">Hardware</tspan>:<tspan class="cc" id="hobby_hard_data_dots"> ................ </tspan>
-<tspan x="390" y="310" class="cc">. </tspan>
-<tspan x="390" y="330" class="cc">. </tspan>
-<tspan x="390" y="350"><tspan class="leftAccent">▸ </tspan>Contact</tspan> ────────────────────────────────────────────────────────────────────────────
-<tspan x="390" y="370" class="cc">. </tspan><tspan class="key">Signal</tspan>:<tspan class="cc" id="work_email_data_dots"> .............................................. </tspan>
-<tspan x="390" y="390" class="cc">. </tspan><tspan class="key">Discord</tspan>:<tspan class="cc" id="discord_data_dots"> ............................................ </tspan>
-<tspan x="390" y="410" class="cc">. </tspan>
+<tspan x="390" y="130" class="cc">. </tspan><tspan class="key">Kernel</tspan>:<tspan class="cc" id="kernel_data_dots"> ................................... </tspan>
+<tspan x="390" y="150" class="cc">. </tspan><tspan class="key">Focus</tspan>:<tspan class="cc" id="focus_data_dots"> ............................... </tspan>
+<tspan x="390" y="170" class="cc">. </tspan><tspan class="key">IDE</tspan>:<tspan class="cc" id="ide_data_dots"> .................................................. </tspan>
+<tspan x="390" y="190" class="cc">. </tspan><tspan class="key">Tools</tspan>:<tspan class="cc" id="tools_data_dots"> .......................... </tspan>
+<tspan x="390" y="210" class="cc">. </tspan><tspan class="key">Languages</tspan>:
+<tspan x="390" y="230" class="cc">.  ├─ </tspan><tspan class="key">Programming</tspan>:<tspan class="cc" id="lang_prog_data_dots"> .................... </tspan>
+<tspan x="390" y="250" class="cc">.  ├─ </tspan><tspan class="key">Computer</tspan>:<tspan class="cc" id="lang_comp_data_dots"> .......................... </tspan>
+<tspan x="390" y="270" class="cc">.  └─ </tspan><tspan class="key">Real</tspan>:<tspan class="cc" id="lang_real_data_dots"> ............................................ </tspan>
+<tspan x="390" y="290" class="cc">. </tspan><tspan class="key">Hobbies</tspan>:
+<tspan x="390" y="310" class="cc">.  ├─ </tspan><tspan class="key">Software</tspan>:<tspan class="cc" id="hobby_soft_data_dots"> ............... </tspan>
+<tspan x="390" y="330" class="cc">.  └─ </tspan><tspan class="key">Hardware</tspan>:<tspan class="cc" id="hobby_hard_data_dots"> .............. </tspan>
+<tspan x="390" y="350" class="cc">. </tspan>
+<tspan x="390" y="370"><tspan class="leftAccent">▸ </tspan>Contact</tspan> ────────────────────────────────────────────────────────────────────────────
+<tspan x="390" y="390" class="cc">. </tspan><tspan class="key">Signal</tspan>:<tspan class="cc" id="work_email_data_dots"> .............................................. </tspan>
+<tspan x="390" y="410" class="cc">. </tspan><tspan class="key">Discord</tspan>:<tspan class="cc" id="discord_data_dots"> ............................................ </tspan>
 <tspan x="390" y="430" class="cc">. </tspan>
 <tspan x="390" y="450"><tspan class="leftAccent">▸ </tspan>GitHub Stats</tspan> ────────────────────────────────────────────────────────────────────────
 <tspan x="390" y="470" class="cc">. </tspan><tspan class="key">Repos</tspan>:<tspan class="cc" id="repo_data_dots"> .... </tspan><tspan class="value" id="repo_data">11</tspan> {<tspan class="key">Contributed</tspan>:<tspan class="cc" id="contrib_data_dots"> .. </tspan><tspan class="value" id="contrib_data">11</tspan>} | <tspan class="key">Stars</tspan>:<tspan class="cc" id="star_data_dots"> ............ </tspan><tspan class="value" id="star_data">33</tspan>
@@ -99,13 +100,15 @@ text, tspan {white-space: pre;}
 <text x="960" y="70" text-anchor="end" class="value" id="os_data">Arch Linux &amp; Windows 11</text>
 <text x="960" y="90" text-anchor="end" class="value" id="age_data">27 years, 9 months, 23 days</text>
 <text x="960" y="110" text-anchor="end" class="value" id="host_data">VoidLabs &amp; Sentry</text>
-<text x="960" y="130" text-anchor="end" class="value" id="kernel_data">Full-Stack &amp; Web Developer</text>
-<text x="960" y="150" text-anchor="end" class="value" id="ide_data">VSCode</text>
-<text x="960" y="190" text-anchor="end" class="value" id="lang_prog_data">Java, Python, TypeScript</text>
-<text x="960" y="210" text-anchor="end" class="value" id="lang_comp_data">HTML, CSS, JSON, YAML</text>
-<text x="960" y="230" text-anchor="end" class="value" id="lang_real_data">English</text>
-<text x="960" y="270" text-anchor="end" class="value" id="hobby_soft_data">Self-Hosting, Homelab, Sim Racing</text>
-<text x="960" y="290" text-anchor="end" class="value" id="hobby_hard_data">Mechanical Keyboards, Soldering</text>
-<text x="960" y="370" text-anchor="end" class="value" id="work_email_data">offx.44</text>
-<text x="960" y="390" text-anchor="end" class="value" id="discord_data">scan.exe</text>
+<text x="960" y="130" text-anchor="end" class="value" id="kernel_data">Software Developer</text>
+<text x="960" y="150" text-anchor="end" class="value" id="focus_data">Full Stack, AI, Tooling</text>
+<text x="960" y="170" text-anchor="end" class="value" id="ide_data">VSCode</text>
+<text x="960" y="190" text-anchor="end" class="value" id="tools_data">Git, Docker, Figma, Insomnia</text>
+<text x="960" y="230" text-anchor="end" class="value" id="lang_prog_data">Java, Python, TypeScript</text>
+<text x="960" y="250" text-anchor="end" class="value" id="lang_comp_data">HTML, CSS, JSON, YAML</text>
+<text x="960" y="270" text-anchor="end" class="value" id="lang_real_data">English</text>
+<text x="960" y="310" text-anchor="end" class="value" id="hobby_soft_data">Self-Hosting, Modding, Tinkering</text>
+<text x="960" y="330" text-anchor="end" class="value" id="hobby_hard_data">Soldering, Building and Repairing</text>
+<text x="960" y="390" text-anchor="end" class="value" id="work_email_data">offx.44</text>
+<text x="960" y="410" text-anchor="end" class="value" id="discord_data">scan.exe</text>
 </svg>
